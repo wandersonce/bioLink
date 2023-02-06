@@ -29,7 +29,7 @@ export default function Home() {
       <ThemeProvider theme={theme}>
         <Header />
 
-        <main className="w-[780px]">
+        <main className="max-w-[780px]">
           <CommercialSlider />
         </main>
       </ThemeProvider>

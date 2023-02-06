@@ -1,4 +1,5 @@
 import { Avatar, Box, Typography } from '@mui/material';
+import SocialMediaButtons from './SocialMediaButtons';
 
 export default function Header() {
   return (
@@ -29,6 +30,8 @@ export default function Header() {
         <Typography variant="h1" fontSize="30px" mt="16px">
           BamGames
         </Typography>
+
+        <SocialMediaButtons />
       </Box>
     </>
   );

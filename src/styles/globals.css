@@ -23,3 +23,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.carousel .control-dots {
+  margin: 0 !important;
+}
+
+.carousel.carousel-slider .control-arrow {
+  padding: 20px !important;
+}
