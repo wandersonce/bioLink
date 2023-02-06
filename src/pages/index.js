@@ -1,10 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import { createTheme, ThemeProvider } from '@mui/material';
-
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import CommercialSlider from '@/components/CommercialSlider';
 
 export default function Home() {
   const theme = createTheme({
@@ -12,14 +9,6 @@ export default function Home() {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
     },
   });
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
 
   return (
     <>
@@ -41,27 +30,7 @@ export default function Home() {
         <Header />
 
         <main className="w-[780px]">
-          <h1 className="text-3xl font-bold text-beigeDark">Hello World!</h1>
-          <Slider {...settings}>
-            <div>
-              <h3>1</h3>
-            </div>
-            <div>
-              <h3>2</h3>
-            </div>
-            <div>
-              <h3>3</h3>
-            </div>
-            <div>
-              <h3>4</h3>
-            </div>
-            <div>
-              <h3>5</h3>
-            </div>
-            <div>
-              <h3>6</h3>
-            </div>
-          </Slider>
+          <CommercialSlider />
         </main>
       </ThemeProvider>
     </>
