@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Header from '../components/Header';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider, Button } from '@mui/material';
 import CommercialSlider from '@/components/CommercialSlider';
+import CoffeeIcon from '@mui/icons-material/Coffee';
 
 export default function Home() {
   const theme = createTheme({
@@ -29,8 +30,22 @@ export default function Home() {
       <ThemeProvider theme={theme}>
         <Header />
 
-        <main className="max-w-[780px]">
+        <main className="max-w-[100vw] md:max-w-[780px] p-4 sm:max-w-[480px]">
           <CommercialSlider />
+          <Button
+            href="#"
+            style={{
+              backgroundColor: '#4B5563',
+              color: '#FFFBF5',
+              width: '100%',
+              fontSize: '18px',
+              fontWeight: 'bold',
+              padding: '10px 20px',
+            }}
+            endIcon={<CoffeeIcon />}
+          >
+            Buy Me a Coffee
+          </Button>
         </main>
       </ThemeProvider>
     </>

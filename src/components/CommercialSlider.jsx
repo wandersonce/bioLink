@@ -6,7 +6,7 @@ export default function CommercialSlider() {
   return (
     <Box mt="40px">
       <Carousel infiniteLoop swipeable>
-        <div style={{ padding: 20 }}>
+        <div>
           <div className="bg-baseGray rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark">
             <Typography
               variant="h5"
@@ -23,7 +23,7 @@ export default function CommercialSlider() {
             </Typography>
           </div>
         </div>
-        <div style={{ padding: 20 }}>
+        <div>
           <div className="bg-baseGrayDark rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark">
             <Typography
               variant="h5"
@@ -40,7 +40,7 @@ export default function CommercialSlider() {
             </Typography>
           </div>
         </div>
-        <div style={{ padding: 20 }}>
+        <div>
           <div className="bg-grayLight rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark">
             <Typography
               variant="h5"
