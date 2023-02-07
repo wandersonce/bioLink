@@ -1,4 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import {
+  Box,
+  ListItem,
+  Typography,
+  ImageList,
+  ImageListItemBar,
+} from '@mui/material';
 import { useState, useEffect } from 'react';
 
 export default function MyWhishlist({ allPosts }) {
@@ -10,25 +16,22 @@ export default function MyWhishlist({ allPosts }) {
   }, [wishListItems]);
 
   return (
-    <Box
-      display="grid"
-      gridTemplateColumns="repeat(12, 1fr)"
-      gridAutoRows="140px"
-      gap="20px"
-    >
+    <ImageList>
       {wishList.map((wishListItem) => {
         return (
-          <Box
-            gridColumn="span 6"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            key={wishListItem.id}
-          >
-            <Typography> {wishListItem.name} </Typography>
-          </Box>
+          <ListItem key={wishListItem.id}>
+            <a rel="noreferrer" target="_blank" href={wishListItem.link}>
+              <img
+                className="w-full h-fit "
+                alt={wishListItem.name}
+                src={wishListItem.imgLink}
+                loading="lazy"
+              />
+              <ImageListItemBar title={wishListItem.name} />
+            </a>
+          </ListItem>
         );
       })}
-    </Box>
+    </ImageList>
   );
 }
