@@ -1,10 +1,20 @@
 import Head from 'next/head';
 import Header from '../components/Header';
-import { createTheme, ThemeProvider, Button } from '@mui/material';
+import {
+  createTheme,
+  ThemeProvider,
+  Button,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from '@mui/material';
 import CommercialSlider from '@/components/CommercialSlider';
 import CoffeeIcon from '@mui/icons-material/Coffee';
+import { ExpandMore } from '@mui/icons-material';
+import MyWhishlist from '@/components/myWhishlist';
 
-export default function Home() {
+export default function Home({ allPosts }) {
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
@@ -46,8 +56,40 @@ export default function Home() {
           >
             Buy Me a Coffee
           </Button>
+
+          <Accordion
+            sx={{
+              marginTop: '30px',
+              borderRadius: '5px',
+              backgroundColor: '#4B5563',
+              color: '#FFFBF5',
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMore sx={{ color: '#FFFBF5' }} />}
+            >
+              <Typography variant="h5">My Wishlist</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <MyWhishlist allPosts={allPosts} />
+            </AccordionDetails>
+          </Accordion>
         </main>
       </ThemeProvider>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  let res = await fetch('http://localhost:3000/api/wishlist', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  let allPosts = await res.json();
+
+  return {
+    props: { allPosts },
+  };
 }

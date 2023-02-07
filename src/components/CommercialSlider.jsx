@@ -5,7 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 export default function CommercialSlider() {
   return (
     <Box mt="40px">
-      <Carousel infiniteLoop swipeable>
+      <Carousel infiniteLoop swipeable showThumbs={false}>
         <div>
           <div className="bg-baseGray rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark">
             <Typography
