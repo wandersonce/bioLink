@@ -14,7 +14,7 @@ import CoffeeIcon from '@mui/icons-material/Coffee';
 import { ExpandMore } from '@mui/icons-material';
 import MyWhishlist from '@/components/myWhishlist';
 
-export default function Home({ allPosts }) {
+export default function Home(props) {
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
@@ -51,6 +51,7 @@ export default function Home({ allPosts }) {
               fontSize: '18px',
               fontWeight: 'bold',
               padding: '10px 20px',
+              marginTop: '30px',
             }}
             endIcon={<CoffeeIcon />}
           >
@@ -70,8 +71,14 @@ export default function Home({ allPosts }) {
             >
               <Typography variant="h5">My Wishlist</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              <MyWhishlist allPosts={allPosts} />
+            <AccordionDetails
+              sx={{
+                maxHeight: '300px',
+                overflowX: 'hidden',
+                overflowY: 'scroll',
+              }}
+            >
+              <MyWhishlist allPosts={props} />
             </AccordionDetails>
           </Accordion>
         </main>
@@ -81,15 +88,14 @@ export default function Home({ allPosts }) {
 }
 
 export async function getServerSideProps(context) {
-  let res = await fetch('http://localhost:3000/api/wishlist', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  let allPosts = await res.json();
+  try {
+    let response = await fetch('http://localhost:3000/api/wishlist');
+    let wishlist = await response.json();
 
-  return {
-    props: { allPosts },
-  };
+    return {
+      props: { posts: JSON.parse(JSON.stringify(wishlist)) },
+    };
+  } catch (e) {
+    console.error(e);
+  }
 }
