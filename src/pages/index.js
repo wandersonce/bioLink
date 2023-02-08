@@ -9,13 +9,13 @@ import {
   AccordionDetails,
   Typography,
 } from '@mui/material';
-import CommercialSlider from '@/components/CommercialSlider';
+import CommercialSlider from '../components/CommercialSlider';
 import CoffeeIcon from '@mui/icons-material/Coffee';
 import { ExpandMore } from '@mui/icons-material';
-import MyWhishlist from '@/components/myWhishlist';
-import RecentPartners from '@/components/RecentPartners';
-import Footer from '@/components/Footer';
-import SetupParts from '@/components/SetupParts';
+import MyWhishlist from '../components/myWhishlist';
+import RecentPartners from '../components/RecentPartners';
+import Footer from '../components/Footer';
+import SetupParts from '../components/SetupParts';
 
 export default function Home(props) {
   const theme = createTheme({
