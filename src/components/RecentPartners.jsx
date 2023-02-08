@@ -8,6 +8,7 @@ import {
   Button,
 } from '@mui/material';
 import { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 
 export default function RecentPartners({ allPartners }) {
   const [partners, setPartners] = useState([]);
@@ -82,7 +83,7 @@ export default function RecentPartners({ allPartners }) {
                 >
                   Reel Posted on:
                   <br />
-                  {partnerItem.datePosted}
+                  {dayjs(partnerItem.datePosted).format('MM-DD-YYYY')}
                 </Typography>
               </CardContent>
               <CardActions
