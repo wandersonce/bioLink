@@ -19,7 +19,7 @@ export default function MyWhishlist({ allPosts }) {
     <ImageList>
       {wishList.map((wishListItem) => {
         return (
-          <ListItem key={wishListItem.id}>
+          <ListItem key={wishListItem._id}>
             <a rel="noreferrer" target="_blank" href={wishListItem.link}>
               <img
                 className="w-full h-fit "

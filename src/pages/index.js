@@ -16,7 +16,6 @@ import MyWhishlist from '@/components/myWhishlist';
 import RecentPartners from '@/components/RecentPartners';
 
 export default function Home(props) {
-  console.log(props);
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
@@ -109,7 +108,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <RecentPartners />
+              <RecentPartners allPartners={props} />
             </AccordionDetails>
           </Accordion>
         </main>
