@@ -13,8 +13,10 @@ import CommercialSlider from '@/components/CommercialSlider';
 import CoffeeIcon from '@mui/icons-material/Coffee';
 import { ExpandMore } from '@mui/icons-material';
 import MyWhishlist from '@/components/myWhishlist';
+import RecentPartners from '@/components/RecentPartners';
 
 export default function Home(props) {
+  console.log(props);
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
@@ -41,7 +43,10 @@ export default function Home(props) {
         <Header />
 
         <main className="max-w-[100vw] md:max-w-[780px] p-4 sm:max-w-[480px]">
+          {/* COMMERCIAL SLIDER */}
           <CommercialSlider />
+
+          {/* BUY ME A COFFEE BUTTON */}
           <Button
             href="#"
             style={{
@@ -58,6 +63,7 @@ export default function Home(props) {
             Buy Me a Coffee
           </Button>
 
+          {/* WISHLIST ACCORDION */}
           <Accordion
             sx={{
               marginTop: '30px',
@@ -81,6 +87,31 @@ export default function Home(props) {
               <MyWhishlist allPosts={props} />
             </AccordionDetails>
           </Accordion>
+
+          {/* PARTNERS ACCORDION */}
+          <Accordion
+            sx={{
+              marginTop: '30px',
+              borderRadius: '5px',
+              backgroundColor: '#4B5563',
+              color: '#FFFBF5',
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMore sx={{ color: '#FFFBF5' }} />}
+            >
+              <Typography variant="h5">Recent Partners</Typography>
+            </AccordionSummary>
+            <AccordionDetails
+              sx={{
+                maxHeight: '300px',
+                overflowX: 'hidden',
+                overflowY: 'scroll',
+              }}
+            >
+              <RecentPartners />
+            </AccordionDetails>
+          </Accordion>
         </main>
       </ThemeProvider>
     </>
@@ -89,11 +120,19 @@ export default function Home(props) {
 
 export async function getServerSideProps(context) {
   try {
-    let response = await fetch('http://localhost:3000/api/wishlist');
-    let wishlist = await response.json();
+    // Getting Wishlist Items
+    let wishListRes = await fetch('http://localhost:3000/api/wishlist');
+    let wishlist = await wishListRes.json();
+
+    // Getting Partner Items
+    let partnersRes = await fetch('http://localhost:3000/api/partners');
+    let partners = await partnersRes.json();
 
     return {
-      props: { posts: JSON.parse(JSON.stringify(wishlist)) },
+      props: {
+        posts: JSON.parse(JSON.stringify(wishlist)),
+        partners: JSON.parse(JSON.stringify(partners)),
+      },
     };
   } catch (e) {
     console.error(e);
