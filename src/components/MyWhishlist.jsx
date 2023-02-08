@@ -1,10 +1,4 @@
-import {
-  Box,
-  ListItem,
-  Typography,
-  ImageList,
-  ImageListItemBar,
-} from '@mui/material';
+import { ListItem, ImageList, ImageListItemBar } from '@mui/material';
 import { useState, useEffect } from 'react';
 
 export default function MyWhishlist({ allPosts }) {

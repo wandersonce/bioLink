@@ -126,7 +126,7 @@ export default function Home(props) {
             <AccordionSummary
               expandIcon={<ExpandMore sx={{ color: '#FFFBF5' }} />}
             >
-              <Typography variant="h5">Recent Partners</Typography>
+              <Typography variant="h5">Setup Most Asked Parts</Typography>
             </AccordionSummary>
             <AccordionDetails
               sx={{
