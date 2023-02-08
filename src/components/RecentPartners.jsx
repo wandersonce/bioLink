@@ -95,14 +95,27 @@ export default function RecentPartners({ allPartners }) {
                   padding: '10px',
                   gap: '10px',
                 }}
+                className="flex-col sm:flex-row"
               >
                 <Button
-                  style={{ backgroundColor: '#404258', color: '#FFFBF5' }}
+                  href={partnerItem.link}
+                  style={{
+                    backgroundColor: '#404258',
+                    color: '#FFFBF5',
+                    flex: '1',
+                  }}
+                  className="w-full"
                 >
                   CHECK WEBSITE
                 </Button>
                 <Button
-                  style={{ backgroundColor: '#4B5563', color: '#FFFBF5' }}
+                  href={partnerItem.reelLink}
+                  style={{
+                    backgroundColor: '#4B5563',
+                    color: '#FFFBF5',
+                    flex: '1',
+                  }}
+                  className="w-full sm:w-1/2"
                 >
                   CHECK REEL
                 </Button>
