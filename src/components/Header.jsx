@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, Button, Typography } from '@mui/material';
 import SocialMediaButtons from './SocialMediaButtons';
 
 export default function Header() {
@@ -32,6 +32,9 @@ export default function Header() {
         </Typography>
 
         <SocialMediaButtons />
+        <Button variant="a" href="mailto:gamesbamce@gmail.com">
+          gamesbamce@gmail.com
+        </Button>
       </Box>
     </>
   );

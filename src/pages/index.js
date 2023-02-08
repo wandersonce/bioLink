@@ -78,7 +78,7 @@ export default function Home(props) {
             </AccordionSummary>
             <AccordionDetails
               sx={{
-                maxHeight: '300px',
+                maxHeight: '350px',
                 overflowX: 'hidden',
                 overflowY: 'scroll',
               }}
@@ -103,7 +103,7 @@ export default function Home(props) {
             </AccordionSummary>
             <AccordionDetails
               sx={{
-                maxHeight: '300px',
+                maxHeight: '400px',
                 overflowX: 'hidden',
                 overflowY: 'scroll',
               }}
@@ -127,10 +127,15 @@ export async function getServerSideProps(context) {
     let partnersRes = await fetch('http://localhost:3000/api/partners');
     let partners = await partnersRes.json();
 
+    // Getting Partner Items
+    let setupPartsRes = await fetch('http://localhost:3000/api/setupParts');
+    let setupParts = await setupPartsRes.json();
+
     return {
       props: {
         posts: JSON.parse(JSON.stringify(wishlist)),
         partners: JSON.parse(JSON.stringify(partners)),
+        setupParts: JSON.parse(JSON.stringify(setupParts)),
       },
     };
   } catch (e) {
