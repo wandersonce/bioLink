@@ -14,6 +14,8 @@ import CoffeeIcon from '@mui/icons-material/Coffee';
 import { ExpandMore } from '@mui/icons-material';
 import MyWhishlist from '@/components/myWhishlist';
 import RecentPartners from '@/components/RecentPartners';
+import Footer from '@/components/Footer';
+import SetupParts from '@/components/SetupParts';
 
 export default function Home(props) {
   const theme = createTheme({
@@ -111,7 +113,33 @@ export default function Home(props) {
               <RecentPartners allPartners={props} />
             </AccordionDetails>
           </Accordion>
+
+          {/* SETUP PARTS ACCORDION */}
+          <Accordion
+            sx={{
+              marginTop: '30px',
+              borderRadius: '5px',
+              backgroundColor: '#4B5563',
+              color: '#FFFBF5',
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMore sx={{ color: '#FFFBF5' }} />}
+            >
+              <Typography variant="h5">Recent Partners</Typography>
+            </AccordionSummary>
+            <AccordionDetails
+              sx={{
+                maxHeight: '350px',
+                overflowX: 'hidden',
+                overflowY: 'scroll',
+              }}
+            >
+              <SetupParts allParts={props} />
+            </AccordionDetails>
+          </Accordion>
         </main>
+        <Footer />
       </ThemeProvider>
     </>
   );

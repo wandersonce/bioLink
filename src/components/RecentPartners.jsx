@@ -18,8 +18,6 @@ export default function RecentPartners({ allPartners }) {
     setPartners(partnersItems);
   }, [partnersItems]);
 
-  console.log(partnersItems);
-
   return (
     <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap="20px">
       {partners.map((partnerItem) => {
