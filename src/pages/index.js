@@ -17,7 +17,7 @@ import RecentPartners from '../components/RecentPartners';
 import Footer from '../components/Footer';
 import SetupParts from '../components/SetupParts';
 
-export default function Home(props) {
+export default function Home() {
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
@@ -85,7 +85,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <MyWhishlist allPosts={props} />
+//               <MyWhishlist allPosts={props} />
             </AccordionDetails>
           </Accordion>
 
@@ -110,7 +110,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <RecentPartners allPartners={props} />
+//               <RecentPartners allPartners={props} />
             </AccordionDetails>
           </Accordion>
 
@@ -135,7 +135,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <SetupParts allParts={props} />
+//               <SetupParts allParts={props} />
             </AccordionDetails>
           </Accordion>
         </main>
@@ -145,28 +145,28 @@ export default function Home(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  try {
-    // Getting Wishlist Items
-    let wishListRes = await fetch('/api/wishlist');
-    let wishlist = await wishListRes.json();
+// export async function getServerSideProps(context) {
+//   try {
+//     // Getting Wishlist Items
+//     let wishListRes = await fetch('/api/wishlist');
+//     let wishlist = await wishListRes.json();
 
-    // Getting Partner Items
-    let partnersRes = await fetch('/api/partners');
-    let partners = await partnersRes.json();
+//     // Getting Partner Items
+//     let partnersRes = await fetch('/api/partners');
+//     let partners = await partnersRes.json();
 
-    // Getting Partner Items
-    let setupPartsRes = await fetch('/api/setupParts');
-    let setupParts = await setupPartsRes.json();
+//     // Getting Partner Items
+//     let setupPartsRes = await fetch('/api/setupParts');
+//     let setupParts = await setupPartsRes.json();
 
-    return {
-      props: {
-        posts: JSON.parse(JSON.stringify(wishlist)),
-        partners: JSON.parse(JSON.stringify(partners)),
-        setupParts: JSON.parse(JSON.stringify(setupParts)),
-      },
-    };
-  } catch (e) {
-    console.error(e);
-  }
-}
+//     return {
+//       props: {
+//         posts: JSON.parse(JSON.stringify(wishlist)),
+//         partners: JSON.parse(JSON.stringify(partners)),
+//         setupParts: JSON.parse(JSON.stringify(setupParts)),
+//       },
+//     };
+//   } catch (e) {
+//     console.error(e);
+//   }
+// }
