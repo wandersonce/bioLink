@@ -12,7 +12,7 @@ import {
 import CommercialSlider from '../components/CommercialSlider';
 import CoffeeIcon from '@mui/icons-material/Coffee';
 import { ExpandMore } from '@mui/icons-material';
-import MyWhishlist from '../components/myWhishlist';
+import MyWhishlist from '../components/MyWhishlist';
 import RecentPartners from '../components/RecentPartners';
 import Footer from '../components/Footer';
 import SetupParts from '../components/SetupParts';
