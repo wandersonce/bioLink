@@ -85,7 +85,7 @@ export default function Home() {
                 overflowY: 'scroll',
               }}
             >
-//               <MyWhishlist allPosts={props} />
+              {/*              <MyWhishlist allPosts={props} /> */}
             </AccordionDetails>
           </Accordion>
 
@@ -110,7 +110,7 @@ export default function Home() {
                 overflowY: 'scroll',
               }}
             >
-//               <RecentPartners allPartners={props} />
+              {/*               <RecentPartners allPartners={props} /> */}
             </AccordionDetails>
           </Accordion>
 
@@ -135,7 +135,7 @@ export default function Home() {
                 overflowY: 'scroll',
               }}
             >
-//               <SetupParts allParts={props} />
+              {/*               <SetupParts allParts={props} /> */}
             </AccordionDetails>
           </Accordion>
         </main>
