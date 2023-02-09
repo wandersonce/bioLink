@@ -32,6 +32,7 @@ export default function SocialMediaButtons() {
         >
           <InstagramLogo size={32} />
         </IconButton>
+
         <IconButton
           href="https://www.tiktok.com/@bamgames1"
           className="text-beigeLight hover:text-lightPurple"
