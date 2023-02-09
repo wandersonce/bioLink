@@ -154,11 +154,15 @@ export async function getStaticProps(context) {
     let wishlist = await wishListRes.json();
 
     // Getting Partner Items
-    let partnersRes = await fetch('/api/partners');
+    let partnersRes = await fetch(
+      'https://bamgamesofc.vercel.app/api/partners'
+    );
     let partners = await partnersRes.json();
 
     // Getting Partner Items
-    let setupPartsRes = await fetch('/api/setupParts');
+    let setupPartsRes = await fetch(
+      'https://bamgamesofc.vercel.app/api/setupParts'
+    );
     let setupParts = await setupPartsRes.json();
 
     return {
