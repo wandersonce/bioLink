@@ -148,15 +148,15 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
   try {
     // Getting Wishlist Items
-    let wishListRes = await fetch('http://localhost:3000/api/wishlist');
+    let wishListRes = await fetch('/api/wishlist');
     let wishlist = await wishListRes.json();
 
     // Getting Partner Items
-    let partnersRes = await fetch('http://localhost:3000/api/partners');
+    let partnersRes = await fetch('/api/partners');
     let partners = await partnersRes.json();
 
     // Getting Partner Items
-    let setupPartsRes = await fetch('http://localhost:3000/api/setupParts');
+    let setupPartsRes = await fetch('/api/setupParts');
     let setupParts = await setupPartsRes.json();
 
     return {
