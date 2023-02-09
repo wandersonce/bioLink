@@ -13,6 +13,21 @@ export default function Document() {
   })(window,document,'script','dataLayer','GTM-TK2FDGW');`,
         }}
       ></script>
+
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-T14PBVXD2V"
+      ></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-T14PBVXD2V');`,
+        }}
+      ></script>
+
       <Head />
       <body className="flex justify-center bg-primaryBg">
         {/* GOOGLE TAG BODY */}
