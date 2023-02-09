@@ -13,15 +13,23 @@ export default function MyWhishlist({ allPosts }) {
     <ImageList>
       {wishList.map((wishListItem) => {
         return (
-          <ListItem key={wishListItem._id}>
-            <a rel="noreferrer" target="_blank" href={wishListItem.link}>
+          <ListItem key={wishListItem._id} sx={{ padding: '5px' }}>
+            <a
+              className="w-full"
+              rel="noreferrer"
+              target="_blank"
+              href={wishListItem.link}
+            >
               <img
-                className="w-full h-full max-h-[150px] sm:max-h-full"
+                className="w-full h-full max-h-[150px] object-cover sm:max-h-full"
                 alt={wishListItem.name}
                 src={wishListItem.imgLink}
                 loading="lazy"
               />
-              <ImageListItemBar title={wishListItem.name} />
+              <ImageListItemBar
+                sx={{ margin: '0 5px', textAlign: 'center' }}
+                title={wishListItem.name}
+              />
             </a>
           </ListItem>
         );

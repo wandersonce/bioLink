@@ -105,6 +105,7 @@ export default function RecentPartners({ allPartners }) {
                         backgroundColor: '#404258',
                         color: '#FFFBF5',
                         flex: '1',
+                        textAlign: 'center',
                       }}
                       className="w-full"
                     >
@@ -116,6 +117,8 @@ export default function RecentPartners({ allPartners }) {
                         backgroundColor: '#4B5563',
                         color: '#FFFBF5',
                         flex: '1',
+                        textAlign: 'center',
+                        marginLeft: '0',
                       }}
                       className="w-full sm:w-1/2"
                     >
