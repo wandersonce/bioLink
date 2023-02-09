@@ -145,7 +145,7 @@ export default function Home(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   try {
     // Getting Wishlist Items
     let wishListRes = await fetch(
