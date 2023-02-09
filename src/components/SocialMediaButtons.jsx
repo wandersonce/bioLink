@@ -16,7 +16,6 @@ export default function SocialMediaButtons() {
     <IconContext.Provider
       value={{
         color: '#F7EFE5',
-        weight: 'bold',
         mirrored: false,
       }}
     >
