@@ -20,7 +20,7 @@ export default function SetupParts({ allParts }) {
               href={setupPartItem.productLink}
             >
               <img
-                className="w-full h-fit "
+                className="w-full h-full max-h-[150px] sm:max-h-full"
                 alt={setupPartItem.name}
                 src={setupPartItem.imgLink}
                 loading="lazy"

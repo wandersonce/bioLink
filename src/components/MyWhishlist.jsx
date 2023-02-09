@@ -16,7 +16,7 @@ export default function MyWhishlist({ allPosts }) {
           <ListItem key={wishListItem._id}>
             <a rel="noreferrer" target="_blank" href={wishListItem.link}>
               <img
-                className="w-full h-fit "
+                className="w-full h-full max-h-[150px] sm:max-h-full"
                 alt={wishListItem.name}
                 src={wishListItem.imgLink}
                 loading="lazy"
