@@ -19,7 +19,7 @@ export default function formTest() {
   const isNonMobile = useMediaQuery('(min-width:600px)');
 
   const handleFormSubmit = async (values, { resetForm }) => {
-    await fetch('http://localhost:3000/api/postTest', {
+    await fetch('https://bamgamesofc.vercel.app/api/postTest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
