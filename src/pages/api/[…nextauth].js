@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import User from '../../models/user';
-import dbConnect from '../../utils/dbConnect';
+import User from '../../utils/user';
+import dbConnect from '../../lib/dbConnect';
 
 export default NextAuth({
   // Enable JSON Web Tokens since we will not store sessions in our DB
@@ -42,6 +42,7 @@ export default NextAuth({
       },
     }),
   ],
+
   // All of this is just to add user information to be accessible for our app in the token/session
   callbacks: {
     // We can pass in additional information from the user document MongoDB returns

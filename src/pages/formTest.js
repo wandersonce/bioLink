@@ -19,16 +19,16 @@ export default function formTest() {
   const isNonMobile = useMediaQuery('(min-width:600px)');
 
   const handleFormSubmit = async (values, { resetForm }) => {
-    await fetch('https://bamgamesofc.vercel.app/api/postTest', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
+    // await fetch('https://bamgamesofc.vercel.app/api/postTest', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(values),
+    // }).catch((error) => {
+    //   window.alert(error);
+    //   return;
+    // });
     console.log(values);
     resetForm();
   };
