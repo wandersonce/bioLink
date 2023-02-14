@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 
 export default function RecentPartners({ allPartners }) {
   const [partners, setPartners] = useState([]);
-  const partnersItems = allPartners.partners.data;
+  const partnersItems = allPartners.data;
 
   useEffect(() => {
     setPartners(partnersItems);

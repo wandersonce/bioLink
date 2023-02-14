@@ -20,6 +20,8 @@ import SetupParts from '../components/SetupParts';
 
 export default function Home(props) {
   const [wishlist, setWishlist] = useState([]);
+  const [partners, setPartners] = useState([]);
+  const [setupParts, setSetupParts] = useState([]);
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
@@ -29,9 +31,20 @@ export default function Home(props) {
   useEffect(() => {
     const values = async () => {
       try {
+        //Getting wishlist values
         const resWishlist = await fetch('/api/wishlist');
         const jsonWishlist = await resWishlist.json();
         setWishlist(jsonWishlist);
+
+        //Getting Partners values
+        const resPartners = await fetch('/api/partners');
+        const jsonPartners = await resPartners.json();
+        setPartners(jsonPartners);
+
+        //Getting Setup Parts values
+        const resSetupParts = await fetch('/api/setupParts');
+        const jsonSetupParts = await resSetupParts.json();
+        setSetupParts(jsonSetupParts);
       } catch (err) {
         console.log(err);
       }
@@ -126,7 +139,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <RecentPartners allPartners={props} />
+              <RecentPartners allPartners={partners} />
             </AccordionDetails>
           </Accordion>
 
@@ -151,7 +164,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <SetupParts allParts={props} />
+              <SetupParts allParts={setupParts} />
             </AccordionDetails>
           </Accordion>
         </main>
@@ -161,27 +174,27 @@ export default function Home(props) {
   );
 }
 
-export async function getStaticProps(context) {
-  try {
-    // Getting Partner Items
-    let partnersRes = await fetch(
-      'https://bamgamesofc.vercel.app/api/partners'
-    );
-    let partners = await partnersRes.json();
+// export async function getStaticProps(context) {
+//   try {
+//     // Getting Partner Items
+//     let partnersRes = await fetch(
+//       'https://bamgamesofc.vercel.app/api/partners'
+//     );
+//     let partners = await partnersRes.json();
 
-    // Getting Partner Items
-    let setupPartsRes = await fetch(
-      'https://bamgamesofc.vercel.app/api/setupParts'
-    );
-    let setupParts = await setupPartsRes.json();
+//     // Getting Partner Items
+//     let setupPartsRes = await fetch(
+//       'https://bamgamesofc.vercel.app/api/setupParts'
+//     );
+//     let setupParts = await setupPartsRes.json();
 
-    return {
-      props: {
-        partners: JSON.parse(JSON.stringify(partners)),
-        setupParts: JSON.parse(JSON.stringify(setupParts)),
-      },
-    };
-  } catch (e) {
-    console.error(e);
-  }
-}
+//     return {
+//       props: {
+//         partners: JSON.parse(JSON.stringify(partners)),
+//         setupParts: JSON.parse(JSON.stringify(setupParts)),
+//       },
+//     };
+//   } catch (e) {
+//     console.error(e);
+//   }
+// }
