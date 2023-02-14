@@ -18,7 +18,7 @@ const userSchema = yup.object().shape({
 
 // This goes to our signup API endpoint
 async function createUser(email, password) {
-  const response = await fetch('/api/signup', {
+  const response = await fetch('/api/auth/signup', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     headers: {
@@ -61,7 +61,7 @@ function AuthForm() {
       await signIn('credentials', {
         email: enteredEmail,
         password: enteredPassword,
-        redirect: false,
+        redirect: '/dashboard',
       });
     } else {
       try {

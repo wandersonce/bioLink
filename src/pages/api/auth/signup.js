@@ -1,6 +1,6 @@
-import User from '../../utils/user';
-import dbConnect from '../../lib/dbConnect';
-import handler from '../../utils/handler';
+import User from '../../../utils/user';
+import dbConnect from '../../../lib/dbConnect';
+import handler from '../../../utils/handler';
 
 handler.post(createUser);
 
