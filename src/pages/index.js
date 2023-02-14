@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import {
@@ -18,11 +19,26 @@ import Footer from '../components/Footer';
 import SetupParts from '../components/SetupParts';
 
 export default function Home(props) {
+  const [wishlist, setWishlist] = useState([]);
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
     },
   });
+
+  useEffect(() => {
+    const values = async () => {
+      try {
+        const resWishlist = await fetch('/api/wishlist');
+        const jsonWishlist = await resWishlist.json();
+        setWishlist(jsonWishlist);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    values();
+  }, []);
 
   return (
     <>
@@ -85,7 +101,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <MyWhishlist allPosts={props} />
+              <MyWhishlist allPosts={wishlist} />
             </AccordionDetails>
           </Accordion>
 
@@ -147,12 +163,6 @@ export default function Home(props) {
 
 export async function getStaticProps(context) {
   try {
-    // Getting Wishlist Items
-    let wishListRes = await fetch(
-      'https://bamgamesofc.vercel.app/api/wishlist'
-    );
-    let wishlist = await wishListRes.json();
-
     // Getting Partner Items
     let partnersRes = await fetch(
       'https://bamgamesofc.vercel.app/api/partners'
@@ -167,7 +177,6 @@ export async function getStaticProps(context) {
 
     return {
       props: {
-        posts: JSON.parse(JSON.stringify(wishlist)),
         partners: JSON.parse(JSON.stringify(partners)),
         setupParts: JSON.parse(JSON.stringify(setupParts)),
       },

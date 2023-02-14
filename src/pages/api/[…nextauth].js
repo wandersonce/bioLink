@@ -7,19 +7,19 @@ import dbConnect from '../../lib/dbConnect';
 export default NextAuth({
   // Enable JSON Web Tokens since we will not store sessions in our DB
   session: {
-    jwt: true,
+    strategy: 'jwt',
   },
   // Here we add our login providers - this is where you could add Google or Github SSO as well
   providers: [
     CredentialsProvider({
-      name: 'credentials',
+      type: 'credentials',
       // The credentials object is what's used to generate Next Auths default login page - We will not use it however.
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
       // Authorize callback is ran upon calling the signin function
-      authorize: async (credentials) => {
+      authorize: async (credentials, req) => {
         dbConnect();
 
         // Try to find the user and also return the password field
@@ -62,6 +62,7 @@ export default NextAuth({
       if (token) {
         session.user = token.user;
       }
+      console.log(session);
       return session;
     },
   },

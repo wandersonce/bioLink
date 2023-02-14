@@ -59,9 +59,9 @@ function AuthForm() {
 
     if (isLogin) {
       await signIn('credentials', {
-        redirect: '/dashboard',
         email: enteredEmail,
         password: enteredPassword,
+        redirect: false,
       });
     } else {
       try {
