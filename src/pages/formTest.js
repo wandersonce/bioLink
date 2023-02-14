@@ -16,8 +16,6 @@ const userSchema = yup.object().shape({
 });
 
 export default function formTest() {
-  const isNonMobile = useMediaQuery('(min-width:600px)');
-
   const handleFormSubmit = async (values, { resetForm }) => {
     // await fetch('https://bamgamesofc.vercel.app/api/postTest', {
     //   method: 'POST',
@@ -54,9 +52,6 @@ export default function formTest() {
                 display="grid"
                 gap="30px"
                 gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                sx={{
-                  '& > div': { gridColumn: isNonMobile ? undefined : 'span 4' },
-                }}
               >
                 <TextField
                   fullWidth
