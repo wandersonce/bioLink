@@ -23,7 +23,7 @@ export default function Dashboard() {
   }, [router]);
 
   return isLogged ? (
-    <Box display="flex" position="relative" width="100vw">
+    <Box display="flex" position="relative" width="100vw" height="100vh">
       <Sidebar session={session} />
       <Box flex="1">
         <h1>Hello {session?.user?.name || 'Unknown'}</h1>

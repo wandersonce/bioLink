@@ -40,6 +40,7 @@ export default function Sidebar({ session }) {
       sx={{
         '& .ps-sidebar-root': {
           border: 'none !important',
+          height: '100%',
         },
         '& .ps-sidebar-container': {
           background: `#374151 !important`,
