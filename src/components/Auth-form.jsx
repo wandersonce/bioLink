@@ -8,19 +8,22 @@ import * as yup from 'yup';
 
 const initialValues = {
   name: '',
+  email: '',
   password: '',
+  imgUrl: '',
 };
 
 const userSchema = yup.object().shape({
-  name: yup.string().required('This is required'),
+  name: yup.string(),
+  email: yup.string().email('Invalid Email').required('This is required'),
   password: yup.string().required('This is required'),
 });
 
 // This goes to our signup API endpoint
-async function createUser(email, password) {
+async function createUser(name, email, password, imgUrl) {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ name, email, password, imgUrl }),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -38,8 +41,6 @@ async function createUser(email, password) {
 // This gets handled by the [...nextauth] endpoint
 function AuthForm() {
   const [registered, setRegistered] = useState(false);
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
 
   // We keep track of whether in a login / or register state
   const [isLogin, setIsLogin] = useState(true);
@@ -50,11 +51,12 @@ function AuthForm() {
   }
 
   const submitHandler = async (values, { resetForm }) => {
-    resetForm();
-
-    const enteredEmail = values.name;
+    const enteredName = values.name;
+    const enteredEmail = values.email;
     const enteredPassword = values.password;
+    const enteredImgUrl = values.imgUrl;
 
+    console.log(values);
     // optional: Add validation here
 
     if (isLogin) {
@@ -65,7 +67,12 @@ function AuthForm() {
       });
     } else {
       try {
-        const result = await createUser(enteredEmail, enteredPassword);
+        const result = await createUser(
+          enteredName,
+          enteredEmail,
+          enteredPassword,
+          enteredImgUrl
+        );
         setRegistered(true);
       } catch (error) {
         console.log(error);
@@ -101,17 +108,35 @@ function AuthForm() {
                       gap="30px"
                       gridTemplateColumns="repeat(4, minmax(0, 1fr))"
                     >
+                      {!isLogin ? (
+                        <TextField
+                          fullWidth
+                          variant="filled"
+                          type="text"
+                          label="Name"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.name}
+                          name="name"
+                          error={!!touched.name && !!errors.name}
+                          helperText={touched.name && errors.name}
+                          sx={{ gridColumn: 'span 2' }}
+                        />
+                      ) : (
+                        ''
+                      )}
+
                       <TextField
                         fullWidth
                         variant="filled"
                         type="text"
-                        label="Name"
+                        label="Email"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.name}
-                        name="name"
-                        error={!!touched.name && !!errors.name}
-                        helperText={touched.firstName && errors.name}
+                        value={values.email}
+                        name="email"
+                        error={!!touched.email && !!errors.email}
+                        helperText={touched.email && errors.email}
                         sx={{ gridColumn: 'span 2' }}
                       />
 
@@ -128,6 +153,23 @@ function AuthForm() {
                         helperText={touched.password && errors.password}
                         sx={{ gridColumn: 'span 2' }}
                       />
+                      {!isLogin ? (
+                        <TextField
+                          fullWidth
+                          variant="filled"
+                          type="text"
+                          label="Image URL"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.imgUrl}
+                          name="imgUrl"
+                          error={!!touched.imgUrl && !!errors.imgUrl}
+                          helperText={touched.imgUrl && errors.imgUrl}
+                          sx={{ gridColumn: 'span 2' }}
+                        />
+                      ) : (
+                        ''
+                      )}
                     </Box>
                     <Box display="flex" justifyContent="end" mt="20px">
                       <Button

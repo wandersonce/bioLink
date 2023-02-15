@@ -3,6 +3,10 @@ import bcrypt from 'bcrypt';
 import validator from 'validator';
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
@@ -25,6 +29,10 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  imgUrl: {
+    type: String,
+    required: false,
   },
 });
 

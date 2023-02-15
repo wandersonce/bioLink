@@ -23,10 +23,12 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     </MenuItem>
   );
 };
-export default function Sidebar() {
+export default function Sidebar({ session }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('Dashboard');
   const { collapseSidebar } = useProSidebar();
+
+  console.log(session);
 
   function changeCollapseState() {
     setIsCollapsed(!isCollapsed);
@@ -82,6 +84,35 @@ export default function Sidebar() {
               </Box>
             )}
           </MenuItem>
+
+          {/* USER */}
+          {!isCollapsed && (
+            <Box mb="25px">
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <img
+                  alt="Profile User"
+                  width="100px"
+                  height="100px"
+                  src={session.user.imgUrl}
+                  style={{ cursor: 'pointer', borderRadius: '50%' }}
+                />
+              </Box>
+              <Box textAlign="center">
+                <Typography
+                  variant="h2"
+                  color="#F7EFE5"
+                  fontWeight="bold"
+                  fontSize="1.5rem"
+                  sx={{ m: '10px 0 0 0' }}
+                >
+                  Wanderson
+                </Typography>
+                <Typography fontSize="1.2rem" variant="h5" color="#E5B8F4">
+                  CEO Web Dev
+                </Typography>
+              </Box>
+            </Box>
+          )}
         </Menu>
       </ProSidebar>
     </Box>

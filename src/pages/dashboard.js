@@ -24,7 +24,7 @@ export default function Dashboard() {
 
   return isLogged ? (
     <Box display="flex" position="relative" width="100vw">
-      <Sidebar />
+      <Sidebar session={session} />
       <Box flex="1">
         <h1>Hello {session?.user?.email || 'Unknown'}</h1>
         <button onClick={() => signOut()}>Sign Out</button>
