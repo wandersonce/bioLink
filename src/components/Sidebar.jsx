@@ -38,6 +38,9 @@ export default function Sidebar({ session }) {
   return (
     <Box
       sx={{
+        '& .ps-sidebar-root': {
+          border: 'none !important',
+        },
         '& .ps-sidebar-container': {
           background: `#374151 !important`,
         },
@@ -75,11 +78,11 @@ export default function Sidebar({ session }) {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color="#6B728E">
-                  ADMINS
+                <Typography fontSize="1.5rem" variant="h3" color="#6B728E">
+                  ADMIN
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlined />
+                  <MenuOutlined sx={{ fill: '#6B728E' }} />
                 </IconButton>
               </Box>
             )}
@@ -105,10 +108,15 @@ export default function Sidebar({ session }) {
                   fontSize="1.5rem"
                   sx={{ m: '10px 0 0 0' }}
                 >
-                  Wanderson
+                  {session.user.name}
                 </Typography>
-                <Typography fontSize="1.2rem" variant="h5" color="#E5B8F4">
-                  CEO Web Dev
+                <Typography
+                  fontSize="1.2rem"
+                  variant="h5"
+                  color="#E5B8F4"
+                  textTransform="uppercase"
+                >
+                  {session.user.role}
                 </Typography>
               </Box>
             </Box>
