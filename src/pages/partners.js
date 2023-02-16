@@ -59,7 +59,7 @@ export default function partners() {
   return isLogged ? (
     <>
       <Head>
-        <title>BamGames Wishlist</title>
+        <title>BamGames Partners</title>
       </Head>
       <Box display="flex" position="relative" width="100vw" height="100vh">
         <Sidebar session={session} />
@@ -173,7 +173,7 @@ export default function partners() {
   ) : (
     <>
       <Head>
-        <title>BamGames Wishlist</title>
+        <title>BamGames Partners</title>
       </Head>
       <h1>Hello, You are not logged!</h1>
       <Link href="/login">

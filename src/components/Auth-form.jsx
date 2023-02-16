@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -56,7 +56,6 @@ function AuthForm() {
     const enteredPassword = values.password;
     const enteredImgUrl = values.imgUrl;
 
-    console.log(values);
     // optional: Add validation here
 
     if (isLogin) {
@@ -86,7 +85,12 @@ function AuthForm() {
     <section className="max-w-xl mx-auto my-7">
       {!registered ? (
         <>
-          <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+          <Typography
+            variant="h5"
+            sx={{ margin: '20px 20px 0 20px !important' }}
+          >
+            {isLogin ? 'Login' : 'Sign Up'}
+          </Typography>
           <Box m="20px">
             <Formik
               onSubmit={submitHandler}
@@ -107,6 +111,16 @@ function AuthForm() {
                       display="grid"
                       gap="30px"
                       gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                      sx={{
+                        '& .MuiInputBase-input': {
+                          backgroundColor: '#374151',
+                          color: '#FFFBF5',
+                          borderRadius: '4px',
+                        },
+                        '& .MuiInputLabel-root': {
+                          color: '#6B728E',
+                        },
+                      }}
                     >
                       {!isLogin ? (
                         <TextField
@@ -165,18 +179,43 @@ function AuthForm() {
                           name="imgUrl"
                           error={!!touched.imgUrl && !!errors.imgUrl}
                           helperText={touched.imgUrl && errors.imgUrl}
-                          sx={{ gridColumn: 'span 2' }}
+                          sx={{
+                            gridColumn: 'span 2',
+                          }}
                         />
                       ) : (
                         ''
                       )}
                     </Box>
-                    <Box display="flex" justifyContent="end" mt="20px">
-                      <Button
-                        type="submit"
-                        color="secondary"
-                        variant="contained"
-                      >
+                    <Box
+                      display="flex"
+                      justifyContent="flex-start"
+                      mt="20px"
+                      gap="15px"
+                      sx={{
+                        '& .MuiButton-outlined': {
+                          backgroundColor: '#810CA8',
+                          color: '#FFFBF5',
+                          border: 'none',
+                          fontWeight: 'bold',
+                        },
+                        '& .MuiButton-outlined:hover': {
+                          backgroundColor: '#E5B8F4',
+                          border: 'none',
+                        },
+                        '& .MuiButton-contained': {
+                          backgroundColor: '#374151',
+                          color: '#FFFBF5',
+                          border: 'none',
+                          fontWeight: 'bold',
+                        },
+                        '& .MuiButton-contained:hover': {
+                          backgroundColor: '#4B5563',
+                          border: 'none',
+                        },
+                      }}
+                    >
+                      <Button type="submit" sx={{}} variant="outlined">
                         {isLogin ? 'Login' : 'Create Account'}
                       </Button>
                       <Button
@@ -184,6 +223,7 @@ function AuthForm() {
                         type="button"
                         color="secondary"
                         variant="contained"
+                        sx={{ backgroundColor: '#810CA8', color: '#FFFBF5' }}
                       >
                         {isLogin
                           ? 'No Account? Create One'

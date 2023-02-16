@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import AuthForm from '../components/Auth-form';
+import { Box, Typography } from '@mui/material';
 
 function AuthPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +30,18 @@ function AuthPage() {
     );
   }
 
-  return <AuthForm />;
+  return (
+    <Box
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+    >
+      <Typography variant="h4">BamGames Dashboard</Typography>
+      <AuthForm />
+    </Box>
+  );
 }
 
 export default AuthPage;

@@ -48,7 +48,7 @@ export default function setup() {
   return isLogged ? (
     <>
       <Head>
-        <title>BamGames Partners</title>
+        <title>BamGames Setup Parts</title>
       </Head>
       <Box display="flex" position="relative" width="100vw" height="100vh">
         <Sidebar session={session} />
