@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.7",
+    "@mui/x-data-grid": "^5.17.24",
     "@next/font": "13.1.6",
     "bcrypt": "^5.1.0",
     "dayjs": "^1.11.7",
