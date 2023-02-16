@@ -182,7 +182,7 @@ export default function Sidebar({ session }) {
 
             <Item
               title="Setup"
-              to="/pcparts"
+              to="/setup"
               icon={<Devices />}
               selected={selected}
               setSelected={setSelected}

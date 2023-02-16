@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Sidebar from '@/components/Sidebar';
 import { Box } from '@mui/material';
 
-export default function partners() {
+export default function setup() {
   const { data: session } = useSession();
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
