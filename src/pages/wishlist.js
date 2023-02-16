@@ -4,8 +4,10 @@ import { useSession, signIn, getSession } from 'next-auth/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function wishlist() {
   const { data: session } = useSession();
@@ -94,6 +96,46 @@ export default function wishlist() {
               },
             }}
           >
+            <Box
+              display="flex"
+              flexDirection="row"
+              gap="15px"
+              marginBottom="20px"
+            >
+              <Button
+                sx={{
+                  backgroundColor: '#810CA8',
+                  border: 'none',
+                  fontWeight: 'bold',
+                  color: '#FFFBF5',
+                  ':hover': {
+                    backgroundColor: '#2D033B',
+                    border: 'none',
+                  },
+                }}
+                variant="outlined"
+                startIcon={<EditIcon />}
+              >
+                EDIT
+              </Button>
+
+              <Button
+                sx={{
+                  backgroundColor: '#9f2525',
+                  border: 'none',
+                  fontWeight: 'bold',
+                  color: '#FFFBF5',
+                  ':hover': {
+                    backgroundColor: '#5e1616',
+                    border: 'none',
+                  },
+                }}
+                variant="outlined"
+                startIcon={<DeleteForeverIcon />}
+              >
+                Delete
+              </Button>
+            </Box>
             <DataGrid
               getRowId={(row) => row._id}
               rows={wishlist}
@@ -118,6 +160,9 @@ export default function wishlist() {
     </>
   ) : (
     <>
+      <Head>
+        <title>BamGames Wishlist</title>
+      </Head>
       <h1>Hello, You are not logged!</h1>
       <Link href="/login">
         <button onClick={() => signIn()}>Sign In</button>

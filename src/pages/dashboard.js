@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession, signOut, signIn, getSession } from 'next-auth/react';
 import Link from 'next/link';
+import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
 import { Box } from '@mui/material';
 
@@ -23,13 +24,18 @@ export default function Dashboard() {
   }, [router]);
 
   return isLogged ? (
-    <Box display="flex" position="relative" width="100vw" height="100vh">
-      <Sidebar session={session} />
-      <Box flex="1">
-        <h1>Hello {session?.user?.name || 'Unknown'}</h1>
-        <button onClick={() => signOut()}>Sign Out</button>
+    <>
+      <Head>
+        <title>BamGames Dashboard</title>
+      </Head>
+      <Box display="flex" position="relative" width="100vw" height="100vh">
+        <Sidebar session={session} />
+        <Box flex="1">
+          <h1>Hello {session?.user?.name || 'Unknown'}</h1>
+          <button onClick={() => signOut()}>Sign Out</button>
+        </Box>
       </Box>
-    </Box>
+    </>
   ) : (
     <>
       <h1>Hello, You are not logged!</h1>
