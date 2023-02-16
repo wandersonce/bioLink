@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   Sidebar as ProSidebar,
   Menu,
@@ -20,14 +21,17 @@ import {
 } from '@mui/icons-material';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
+  let isActivePage =
+    selected.toLowerCase() == title.toLowerCase() ? true : false;
+
   return (
     <MenuItem
-      active={selected === title}
+      active={isActivePage}
       onClick={() => setSelected(title)}
       icon={icon}
+      component={<Link href={to} />}
     >
       <Typography>{title}</Typography>
-      <Link href={to} />
     </MenuItem>
   );
 };
@@ -37,13 +41,18 @@ export default function Sidebar({ session }) {
   const { collapseSidebar } = useProSidebar();
   const matches = useMediaQuery('(max-width:640px)');
 
+  //Get current page
+  const router = useRouter();
+  const currentPage = router.pathname;
+
   // check if is mobile
   useEffect(() => {
-    console.log(matches);
     if (matches) {
       setIsCollapsed(true);
       collapseSidebar();
     }
+    const pathName = currentPage.split('/');
+    setSelected(pathName[1]);
   }, []);
 
   function changeCollapseState() {
@@ -157,14 +166,14 @@ export default function Sidebar({ session }) {
               Data
             </Typography>
             <Item
-              title="Wishlist Items"
+              title="Wishlist"
               to="/wishlist"
               icon={<Redeem />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Partners List"
+              title="Partners"
               to="/partners"
               icon={<Handshake />}
               selected={selected}
@@ -172,7 +181,7 @@ export default function Sidebar({ session }) {
             />
 
             <Item
-              title="Setup Parts"
+              title="Setup"
               to="/pcparts"
               icon={<Devices />}
               selected={selected}
