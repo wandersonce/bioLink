@@ -60,11 +60,11 @@ export default function Sidebar({ session }) {
         '& ps-menu-button:hover': {
           backgroundColor: 'transparent !important',
         },
-        '& .ps-inner-item:hover': {
-          color: '#868dfb !important',
+        '& .ps-menu-button:hover': {
+          color: '#404258 !important',
         },
-        '& .ps-menu-item.active': {
-          color: '#6870fa !important',
+        '& .ps-menu-button.ps-active': {
+          color: '#6B728E !important',
         },
       }}
     >
