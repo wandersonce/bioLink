@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import Stack from '@mui/material/Stack';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import AuthForm from '../components/Auth-form';
 
@@ -20,7 +22,11 @@ function AuthPage() {
   }, [router]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
+        <LinearProgress color="secondary" />
+      </Stack>
+    );
   }
 
   return <AuthForm />;

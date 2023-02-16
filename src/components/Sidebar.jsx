@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import {
@@ -7,8 +7,8 @@ import {
   MenuItem,
   useProSidebar,
 } from 'react-pro-sidebar';
-// import 'react-pro-sidebar/dist/css/styles.css';
 import { Box, IconButton, Typography } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import {
   MenuOutlined,
@@ -35,6 +35,16 @@ export default function Sidebar({ session }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('Dashboard');
   const { collapseSidebar } = useProSidebar();
+  const matches = useMediaQuery('(max-width:640px)');
+
+  // check if is mobile
+  useEffect(() => {
+    console.log(matches);
+    if (matches) {
+      setIsCollapsed(true);
+      collapseSidebar();
+    }
+  }, []);
 
   function changeCollapseState() {
     setIsCollapsed(!isCollapsed);
@@ -148,7 +158,7 @@ export default function Sidebar({ session }) {
             </Typography>
             <Item
               title="Wishlist Items"
-              to="/wishList"
+              to="/wishlist"
               icon={<Redeem />}
               selected={selected}
               setSelected={setSelected}
