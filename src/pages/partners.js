@@ -10,14 +10,12 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import dayjs from 'dayjs';
 
-export default function partners() {
+export default function Partners() {
   const { data: session } = useSession();
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
-
-  var formatedDate = dayjs(wishlist.datePosted).format('MM-DD-YYYY');
 
   const columns = [
     { field: 'name', headerName: 'Name', flex: 1 },

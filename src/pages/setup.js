@@ -9,7 +9,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 
-export default function setup() {
+export default function Setup() {
   const { data: session } = useSession();
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
