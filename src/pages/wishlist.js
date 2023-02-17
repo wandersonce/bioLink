@@ -9,6 +9,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 
+import AddWishList from '@/components/AddWishList';
+
 export default function Wishlist() {
   const { data: session } = useSession();
   const router = useRouter();
@@ -98,27 +100,29 @@ export default function Wishlist() {
           >
             <Box
               display="flex"
-              flexDirection="row"
-              gap="15px"
               marginBottom="20px"
+              justifyContent="space-between"
             >
-              <Button
-                sx={{
-                  backgroundColor: '#810CA8',
-                  border: 'none',
-                  fontWeight: 'bold',
-                  color: '#FFFBF5',
-                  ':hover': {
-                    backgroundColor: '#2D033B',
-                    border: 'none',
-                  },
-                }}
-                variant="outlined"
-                startIcon={<EditIcon />}
-              >
-                EDIT
-              </Button>
+              <Box display="flex" flexDirection="row" gap="15px">
+                <AddWishList />
 
+                <Button
+                  sx={{
+                    backgroundColor: '#810CA8',
+                    border: 'none',
+                    fontWeight: 'bold',
+                    color: '#FFFBF5',
+                    ':hover': {
+                      backgroundColor: '#2D033B',
+                      border: 'none',
+                    },
+                  }}
+                  variant="outlined"
+                  startIcon={<EditIcon />}
+                >
+                  EDIT
+                </Button>
+              </Box>
               <Button
                 sx={{
                   backgroundColor: '#9f2525',
@@ -133,7 +137,7 @@ export default function Wishlist() {
                 variant="outlined"
                 startIcon={<DeleteForeverIcon />}
               >
-                Delete
+                DELETE
               </Button>
             </Box>
             <DataGrid
