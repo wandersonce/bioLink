@@ -17,6 +17,7 @@ const userSchema = yup.object().shape({
 
 export default function formTest() {
   const handleFormSubmit = async (values, { resetForm }) => {
+    console.log(values);
     // await fetch('https://bamgamesofc.vercel.app/api/postTest', {
     //   method: 'POST',
     //   headers: {
@@ -27,7 +28,7 @@ export default function formTest() {
     //   window.alert(error);
     //   return;
     // });
-    console.log(values);
+
     resetForm();
   };
 

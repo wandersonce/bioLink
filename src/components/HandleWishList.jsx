@@ -78,8 +78,41 @@ export default function HandleWishList(selected = null) {
     setOpen(false);
   };
 
-  const handleAddWishList = (name, link, imgLink) => {
-    console.log(name, link, imgLink);
+  const handleDeleteButton = async () => {
+    await fetch('/api/wishlist', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selectedTable),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        window.alert(error);
+        return;
+      });
+  };
+
+  const handleAddWishList = async (values) => {
+    const fieldValues = {
+      name: values.name,
+      link: values.link,
+      imgLink: values.imgLink,
+    };
+
+    await fetch('/api/wishlist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+
     setOpen(false);
   };
 
@@ -137,6 +170,7 @@ export default function HandleWishList(selected = null) {
           }}
           variant="outlined"
           startIcon={<DeleteForeverIcon />}
+          onClick={handleDeleteButton}
         >
           DELETE
         </Button>
@@ -253,7 +287,6 @@ export default function HandleWishList(selected = null) {
                         },
                       }}
                       type="submit"
-                      onClick={handleAddWishList}
                     >
                       ADD ITEM
                     </Button>
