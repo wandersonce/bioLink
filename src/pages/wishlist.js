@@ -17,6 +17,7 @@ export default function Wishlist() {
   const [isLogged, setIsLogged] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
+  const [selectedRow, setSelectedRow] = useState([]);
 
   const columns = [
     { field: 'name', headerName: 'Name', flex: 1 },
@@ -104,7 +105,7 @@ export default function Wishlist() {
               justifyContent="space-between"
             >
               <Box display="flex" flexDirection="row" gap="15px">
-                <AddWishList />
+                <AddWishList selectedRow={selectedRow} />
 
                 <Button
                   sx={{
@@ -152,6 +153,7 @@ export default function Wishlist() {
                   const selectionSet = new Set(selectionModel);
                   const result = selection.filter((s) => !selectionSet.has(s));
 
+                  setSelectedRow(result);
                   setSelectionModel(result);
                 } else {
                   setSelectionModel(selection);

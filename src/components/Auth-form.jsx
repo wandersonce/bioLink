@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -215,7 +214,7 @@ function AuthForm() {
                         },
                       }}
                     >
-                      <Button type="submit" sx={{}} variant="outlined">
+                      <Button type="submit" variant="outlined">
                         {isLogin ? 'Login' : 'Create Account'}
                       </Button>
                       <Button
