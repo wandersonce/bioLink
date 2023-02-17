@@ -7,7 +7,6 @@ import Sidebar from '@/components/Sidebar';
 import { Box, Typography, Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
 
 import AddWishList from '@/components/AddWishList';
 
@@ -104,26 +103,8 @@ export default function Wishlist() {
               marginBottom="20px"
               justifyContent="space-between"
             >
-              <Box display="flex" flexDirection="row" gap="15px">
-                <AddWishList selectedRow={selectedRow} />
+              <AddWishList selectedRow={selectedRow} />
 
-                <Button
-                  sx={{
-                    backgroundColor: '#810CA8',
-                    border: 'none',
-                    fontWeight: 'bold',
-                    color: '#FFFBF5',
-                    ':hover': {
-                      backgroundColor: '#2D033B',
-                      border: 'none',
-                    },
-                  }}
-                  variant="outlined"
-                  startIcon={<EditIcon />}
-                >
-                  EDIT
-                </Button>
-              </Box>
               <Button
                 sx={{
                   backgroundColor: '#9f2525',

@@ -4,14 +4,14 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 import { AddBox } from '@mui/icons-material';
+import EditIcon from '@mui/icons-material/Edit';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-const initialValues = {
+let initialValues = {
   name: '',
   link: '',
   imgLink: '',
@@ -25,12 +25,47 @@ const useSchema = yup.object().shape({
 
 export default function AddWishList(selected) {
   const [open, setOpen] = useState(false);
-  // console.log(selected);
+  const [selectedTable, setSelectedTable] = useState('');
+
   useEffect(() => {
-    console.log(selected);
+    setSelectedTable(selected.selectedRow[0]);
   }, [selected]);
-  const handleClickOpen = () => {
-    setOpen(true);
+
+  const handleClickOpen = (clickedType) => {
+    if (clickedType === 'edit') {
+      const value = async () => {
+        try {
+          //Getting wishlist values
+          const resWishlist = await fetch('/api/wishlist');
+          const jsonWishlist = await resWishlist.json();
+
+          await jsonWishlist.data.map((wishlistItem) => {
+            if (wishlistItem._id === selectedTable) {
+              console.log(wishlistItem);
+              initialValues = {
+                name: wishlistItem.name,
+                link: wishlistItem.link,
+                imgLink: wishlistItem.imgLink,
+              };
+              setOpen(true);
+            } else {
+              return;
+            }
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      value();
+    } else {
+      initialValues = {
+        name: '',
+        link: '',
+        imgLink: '',
+      };
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -44,24 +79,43 @@ export default function AddWishList(selected) {
 
   return (
     <Box>
-      <Button
-        sx={{
-          backgroundColor: ' 	#097969',
-          border: 'none',
-          fontWeight: 'bold',
-          color: '#FFFBF5',
-          ':hover': {
-            backgroundColor: '#023020',
+      <Box display="flex" flexDirection="row" gap="15px">
+        <Button
+          sx={{
+            backgroundColor: ' 	#097969',
             border: 'none',
-          },
-        }}
-        variant="outlined"
-        startIcon={<AddBox />}
-        onClick={handleClickOpen}
-      >
-        ADD NEW
-      </Button>
+            fontWeight: 'bold',
+            color: '#FFFBF5',
+            ':hover': {
+              backgroundColor: '#023020',
+              border: 'none',
+            },
+          }}
+          variant="outlined"
+          startIcon={<AddBox />}
+          onClick={() => handleClickOpen('addNew')}
+        >
+          ADD NEW
+        </Button>
 
+        <Button
+          sx={{
+            backgroundColor: '#810CA8',
+            border: 'none',
+            fontWeight: 'bold',
+            color: '#FFFBF5',
+            ':hover': {
+              backgroundColor: '#2D033B',
+              border: 'none',
+            },
+          }}
+          variant="outlined"
+          startIcon={<EditIcon />}
+          onClick={() => handleClickOpen('edit')}
+        >
+          EDIT
+        </Button>
+      </Box>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle
           sx={{
