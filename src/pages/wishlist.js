@@ -6,9 +6,8 @@ import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
 import { Box, Typography, Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-import AddWishList from '@/components/AddWishList';
+import HandleWishList from '@/components/HandleWishList';
 
 export default function Wishlist() {
   const { data: session } = useSession();
@@ -98,30 +97,8 @@ export default function Wishlist() {
               },
             }}
           >
-            <Box
-              display="flex"
-              marginBottom="20px"
-              justifyContent="space-between"
-            >
-              <AddWishList selectedRow={selectedRow} />
+            <HandleWishList selectedRow={selectedRow} />
 
-              <Button
-                sx={{
-                  backgroundColor: '#9f2525',
-                  border: 'none',
-                  fontWeight: 'bold',
-                  color: '#FFFBF5',
-                  ':hover': {
-                    backgroundColor: '#5e1616',
-                    border: 'none',
-                  },
-                }}
-                variant="outlined"
-                startIcon={<DeleteForeverIcon />}
-              >
-                DELETE
-              </Button>
-            </Box>
             <DataGrid
               getRowId={(row) => row._id}
               rows={wishlist}
@@ -133,11 +110,11 @@ export default function Wishlist() {
                 if (selection.length > 1) {
                   const selectionSet = new Set(selectionModel);
                   const result = selection.filter((s) => !selectionSet.has(s));
-
                   setSelectedRow(result);
                   setSelectionModel(result);
                 } else {
                   setSelectionModel(selection);
+                  setSelectedRow(selection);
                 }
               }}
             />

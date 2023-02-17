@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 import { AddBox } from '@mui/icons-material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -23,12 +24,18 @@ const useSchema = yup.object().shape({
   imgLink: yup.string().required('This is required'),
 });
 
-export default function AddWishList(selected) {
+export default function HandleWishList(selected = null) {
   const [open, setOpen] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
+  const [editStatus, setEditStatus] = useState(true);
 
   useEffect(() => {
-    setSelectedTable(selected.selectedRow[0]);
+    if (selected.length == 0) {
+      setEditStatus(true);
+    } else {
+      setEditStatus(false);
+      setSelectedTable(selected.selectedRow[0]);
+    }
   }, [selected]);
 
   const handleClickOpen = (clickedType) => {
@@ -41,7 +48,6 @@ export default function AddWishList(selected) {
 
           await jsonWishlist.data.map((wishlistItem) => {
             if (wishlistItem._id === selectedTable) {
-              console.log(wishlistItem);
               initialValues = {
                 name: wishlistItem.name,
                 link: wishlistItem.link,
@@ -79,41 +85,60 @@ export default function AddWishList(selected) {
 
   return (
     <Box>
-      <Box display="flex" flexDirection="row" gap="15px">
-        <Button
-          sx={{
-            backgroundColor: ' 	#097969',
-            border: 'none',
-            fontWeight: 'bold',
-            color: '#FFFBF5',
-            ':hover': {
-              backgroundColor: '#023020',
+      <Box display="flex" marginBottom="20px" justifyContent="space-between">
+        <Box display="flex" flexDirection="row" gap="15px">
+          <Button
+            sx={{
+              backgroundColor: ' 	#097969',
               border: 'none',
-            },
-          }}
-          variant="outlined"
-          startIcon={<AddBox />}
-          onClick={() => handleClickOpen('addNew')}
-        >
-          ADD NEW
-        </Button>
+              fontWeight: 'bold',
+              color: '#FFFBF5',
+              ':hover': {
+                backgroundColor: '#023020',
+                border: 'none',
+              },
+            }}
+            variant="outlined"
+            startIcon={<AddBox />}
+            onClick={() => handleClickOpen('addNew')}
+          >
+            ADD NEW
+          </Button>
 
+          <Button
+            sx={{
+              backgroundColor: '#810CA8',
+              border: 'none',
+              fontWeight: 'bold',
+              color: '#FFFBF5',
+              ':hover': {
+                backgroundColor: '#2D033B',
+                border: 'none',
+              },
+            }}
+            variant="outlined"
+            startIcon={<EditIcon />}
+            onClick={() => handleClickOpen('edit')}
+            disabled={editStatus}
+          >
+            EDIT
+          </Button>
+        </Box>
         <Button
           sx={{
-            backgroundColor: '#810CA8',
+            backgroundColor: '#9f2525',
             border: 'none',
             fontWeight: 'bold',
             color: '#FFFBF5',
             ':hover': {
-              backgroundColor: '#2D033B',
+              backgroundColor: '#5e1616',
               border: 'none',
             },
           }}
           variant="outlined"
-          startIcon={<EditIcon />}
-          onClick={() => handleClickOpen('edit')}
+          startIcon={<DeleteForeverIcon />}
         >
-          EDIT
+          DELETE
         </Button>
       </Box>
       <Dialog open={open} onClose={handleClose}>
