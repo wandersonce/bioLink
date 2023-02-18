@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -28,6 +29,9 @@ export default function HandleWishList(selected = null) {
   const [open, setOpen] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
   const [editStatus, setEditStatus] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (selected.length == 0) {
@@ -53,8 +57,11 @@ export default function HandleWishList(selected = null) {
                 link: wishlistItem.link,
                 imgLink: wishlistItem.imgLink,
               };
+              setIsEdit(true);
+              console.log(isEdit);
               setOpen(true);
             } else {
+              setIsEdit(false);
               return;
             }
           });
@@ -87,7 +94,9 @@ export default function HandleWishList(selected = null) {
       body: JSON.stringify(selectedTable),
     })
       .then((res) => {
-        console.log(res);
+        if (res.status === 200) {
+          router.reload(window.location.pathname);
+        }
       })
       .catch((error) => {
         window.alert(error);
@@ -102,16 +111,23 @@ export default function HandleWishList(selected = null) {
       imgLink: values.imgLink,
     };
 
+    const method = isEdit ? 'PUT' : 'POST';
+
     await fetch('/api/wishlist', {
-      method: 'POST',
+      method: method,
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(values),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
+    })
+      .then((res) => {
+        if (res.status === 200) {
+        }
+      })
+      .catch((error) => {
+        window.alert(error);
+        return;
+      });
 
     setOpen(false);
   };

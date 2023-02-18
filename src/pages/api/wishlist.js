@@ -22,12 +22,16 @@ export default async function handler(req, res) {
         const deleteItem = await db
           .collection('wishList')
           .findOneAndDelete({ _id: verifiedId });
-
         res.status(200).json(deleteItem);
       } catch (err) {
         console.log(err);
       }
 
+      break;
+
+    case 'PUT':
+      let changedItem = req.body;
+      console.log(changedItem);
       break;
   }
 }
