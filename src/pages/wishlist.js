@@ -46,6 +46,13 @@ export default function Wishlist() {
     getWishList();
   }, []);
 
+  useEffect(() => {}, [wishlist]);
+
+  const updateList = (fetchList) => {
+    console.log(fetchList);
+    setWishlist(fetchList.data);
+  };
+
   return isLogged ? (
     <>
       <Head>
@@ -97,7 +104,7 @@ export default function Wishlist() {
               },
             }}
           >
-            <HandleWishList selectedRow={selectedRow} />
+            <HandleWishList updateList={updateList} selectedRow={selectedRow} />
 
             <DataGrid
               getRowId={(row) => row._id}

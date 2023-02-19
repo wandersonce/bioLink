@@ -25,22 +25,23 @@ const useSchema = yup.object().shape({
   imgLink: yup.string().required('This is required'),
 });
 
-export default function HandleWishList(selected = null) {
+export default function HandleWishList({ selectedRow, updateList }) {
   const [open, setOpen] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
   const [editStatus, setEditStatus] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
+  let handleSelected = selectedRow;
 
   const router = useRouter();
 
   useEffect(() => {
-    if (selected.length == 0) {
+    if (selectedRow == undefined) {
       setEditStatus(true);
     } else {
       setEditStatus(false);
-      setSelectedTable(selected.selectedRow[0]);
+      setSelectedTable(selectedRow[0]);
     }
-  }, [selected]);
+  }, [handleSelected]);
 
   const handleClickOpen = (clickedType) => {
     if (clickedType === 'edit') {
@@ -93,9 +94,12 @@ export default function HandleWishList(selected = null) {
       },
       body: JSON.stringify(selectedTable),
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.status === 200) {
-          router.reload(window.location.pathname);
+          const resWishlist = await fetch('/api/wishlist');
+          const jsonWishlist = await resWishlist.json();
+
+          updateList(jsonWishlist);
         }
       })
       .catch((error) => {
@@ -120,8 +124,12 @@ export default function HandleWishList(selected = null) {
       },
       body: JSON.stringify(values),
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.status === 200) {
+          const resWishlist = await fetch('/api/wishlist');
+          const jsonWishlist = await resWishlist.json();
+
+          updateList(jsonWishlist);
         }
       })
       .catch((error) => {
