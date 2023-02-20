@@ -31,7 +31,27 @@ export default async function handler(req, res) {
 
     case 'PUT':
       let changedItem = req.body;
-      console.log(changedItem);
+      let verifiedChangeId = new ObjectId(changedItem._id);
+      console.log(verifiedChangeId);
+
+      try {
+        const updatedItem = await db.collection('wishList').findOneAndUpdate(
+          { _id: verifiedChangeId },
+          {
+            $set: {
+              name: changedItem.name,
+              link: changedItem.link,
+              imgLink: changedItem.imgLink,
+            },
+          }
+        );
+        console.log(updatedItem);
+
+        res.status(200).json(updatedItem);
+      } catch (err) {
+        console.log(err);
+      }
+
       break;
   }
 }

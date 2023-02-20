@@ -49,7 +49,6 @@ export default function Wishlist() {
   useEffect(() => {}, [wishlist]);
 
   const updateList = (fetchList) => {
-    console.log(fetchList);
     setWishlist(fetchList.data);
   };
 

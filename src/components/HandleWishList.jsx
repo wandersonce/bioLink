@@ -14,6 +14,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 let initialValues = {
+  _id: '',
   name: '',
   link: '',
   imgLink: '',
@@ -50,19 +51,17 @@ export default function HandleWishList({ selectedRow, updateList }) {
           //Getting wishlist values
           const resWishlist = await fetch('/api/wishlist');
           const jsonWishlist = await resWishlist.json();
-
+          setIsEdit(true);
           await jsonWishlist.data.map((wishlistItem) => {
             if (wishlistItem._id === selectedTable) {
               initialValues = {
+                _id: wishlistItem._id,
                 name: wishlistItem.name,
                 link: wishlistItem.link,
                 imgLink: wishlistItem.imgLink,
               };
-              setIsEdit(true);
-              console.log(isEdit);
               setOpen(true);
             } else {
-              setIsEdit(false);
               return;
             }
           });
@@ -74,10 +73,12 @@ export default function HandleWishList({ selectedRow, updateList }) {
       value();
     } else {
       initialValues = {
+        _id: '',
         name: '',
         link: '',
         imgLink: '',
       };
+      setIsEdit(false);
       setOpen(true);
     }
   };
@@ -242,6 +243,13 @@ export default function HandleWishList({ selectedRow, updateList }) {
                     }}
                   >
                     <TextField
+                      sx={{ visibility: 'hidden', position: 'absolute' }}
+                      label="_id"
+                      variant="filled"
+                      size="small"
+                      value={values._id}
+                    />
+                    <TextField
                       fullWidth
                       variant="filled"
                       type="text"
@@ -312,7 +320,7 @@ export default function HandleWishList({ selectedRow, updateList }) {
                       }}
                       type="submit"
                     >
-                      ADD ITEM
+                      {isEdit ? 'EDIT ITEM' : 'ADD ITEM'}
                     </Button>
                   </DialogActions>
                 </form>
