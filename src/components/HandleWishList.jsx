@@ -110,11 +110,21 @@ export default function HandleWishList({ selectedRow, updateList }) {
   };
 
   const handleAddWishList = async (values) => {
-    const fieldValues = {
-      name: values.name,
-      link: values.link,
-      imgLink: values.imgLink,
-    };
+    let fieldValues = {};
+    if (isEdit) {
+      fieldValues = {
+        _id: values._id,
+        name: values.name,
+        link: values.link,
+        imgLink: values.imgLink,
+      };
+    } else {
+      fieldValues = {
+        name: values.name,
+        link: values.link,
+        imgLink: values.imgLink,
+      };
+    }
 
     const method = isEdit ? 'PUT' : 'POST';
 
@@ -123,7 +133,7 @@ export default function HandleWishList({ selectedRow, updateList }) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(values),
+      body: JSON.stringify(fieldValues),
     })
       .then(async (res) => {
         if (res.status === 200) {
