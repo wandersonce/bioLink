@@ -63,7 +63,7 @@ export default function Partners() {
         <Sidebar session={session} />
         <Box flex="1">
           <Typography m="40px 40px 0 40px" variant="h3">
-            Wishlist Items
+            Partners Posts
           </Typography>
           <Box
             m="40px"
