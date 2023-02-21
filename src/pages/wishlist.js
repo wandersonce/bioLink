@@ -4,7 +4,7 @@ import { useSession, signIn, getSession } from 'next-auth/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import HandleWishList from '@/components/HandleWishList';
@@ -45,8 +45,6 @@ export default function Wishlist() {
     };
     getWishList();
   }, []);
-
-  useEffect(() => {}, [wishlist]);
 
   const updateList = (fetchList) => {
     setWishlist(fetchList.data);

@@ -9,13 +9,15 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import dayjs from 'dayjs';
+import HandlePartners from '@/components/HaldlePartners';
 
 export default function Partners() {
   const { data: session } = useSession();
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
-  const [wishlist, setWishlist] = useState([]);
+  const [partners, setPartners] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
+  const [selectedRow, setSelectedRow] = useState([]);
 
   const columns = [
     { field: 'name', headerName: 'Name', flex: 1 },
@@ -41,18 +43,22 @@ export default function Partners() {
       }
     });
 
-    const getWishList = async () => {
+    const getPartners = async () => {
       try {
         //Getting wishlist values
-        const resWishlist = await fetch('/api/partners');
-        const jsonWishlist = await resWishlist.json();
-        setWishlist(jsonWishlist.data);
+        const resPartners = await fetch('/api/partners');
+        const jsonPartners = await resPartners.json();
+        setPartners(jsonPartners.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getWishList();
+    getPartners();
   }, []);
+
+  const updateList = (fetchList) => {
+    setPartners(fetchList.data);
+  };
 
   return isLogged ? (
     <>
@@ -105,49 +111,11 @@ export default function Partners() {
               },
             }}
           >
-            <Box
-              display="flex"
-              flexDirection="row"
-              gap="15px"
-              marginBottom="20px"
-            >
-              <Button
-                sx={{
-                  backgroundColor: '#810CA8',
-                  border: 'none',
-                  fontWeight: 'bold',
-                  color: '#FFFBF5',
-                  ':hover': {
-                    backgroundColor: '#2D033B',
-                    border: 'none',
-                  },
-                }}
-                variant="outlined"
-                startIcon={<EditIcon />}
-              >
-                EDIT
-              </Button>
+            <HandlePartners updateList={updateList} selectedRow={selectedRow} />
 
-              <Button
-                sx={{
-                  backgroundColor: '#9f2525',
-                  border: 'none',
-                  fontWeight: 'bold',
-                  color: '#FFFBF5',
-                  ':hover': {
-                    backgroundColor: '#5e1616',
-                    border: 'none',
-                  },
-                }}
-                variant="outlined"
-                startIcon={<DeleteForeverIcon />}
-              >
-                Delete
-              </Button>
-            </Box>
             <DataGrid
               getRowId={(row) => row._id}
-              rows={wishlist}
+              rows={partners}
               columns={columns}
               sx={{ overflowX: 'scroll' }}
               checkboxSelection
@@ -157,10 +125,11 @@ export default function Partners() {
                 if (selection.length > 1) {
                   const selectionSet = new Set(selectionModel);
                   const result = selection.filter((s) => !selectionSet.has(s));
-
+                  setSelectedRow(result);
                   setSelectionModel(result);
                 } else {
                   setSelectionModel(selection);
+                  setSelectedRow(selection);
                 }
               }}
             />
