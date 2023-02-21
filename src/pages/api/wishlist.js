@@ -32,7 +32,6 @@ export default async function handler(req, res) {
     case 'PUT':
       let changedItem = req.body;
       let verifiedChangeId = new ObjectId(changedItem._id);
-      console.log(verifiedChangeId);
 
       try {
         const updatedItem = await db.collection('wishList').findOneAndUpdate(

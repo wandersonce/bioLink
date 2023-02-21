@@ -13,5 +13,46 @@ export default async function handler(req, res) {
       const allPosts = await db.collection('partners').find({}).toArray();
       res.json({ status: 200, data: allPosts });
       break;
+    case 'DELETE':
+      let itemId = req.body;
+      let verifiedId = new ObjectId(itemId);
+
+      try {
+        const deleteItem = await db
+          .collection('partners')
+          .findOneAndDelete({ _id: verifiedId });
+        res.status(200).json(deleteItem);
+      } catch (err) {
+        console.log(err);
+      }
+
+      break;
+
+    case 'PUT':
+      let changedItem = req.body;
+      let verifiedChangeId = new ObjectId(changedItem._id);
+
+      try {
+        const updatedItem = await db.collection('partners').findOneAndUpdate(
+          { _id: verifiedChangeId },
+          {
+            $set: {
+              name: changedItem.name,
+              link: changedItem.link,
+              datePosted: changedItem.datePosted,
+              imgLink: changedItem.imgLink,
+              coupon: changedItem.coupon,
+              descountCoupon: changedItem.descountCoupon,
+              reelLink: changedItem.reelLink,
+            },
+          }
+        );
+
+        res.status(200).json(updatedItem);
+      } catch (err) {
+        console.log(err);
+      }
+
+      break;
   }
 }
