@@ -33,8 +33,6 @@ export default async function handler(req, res) {
       let changedItem = req.body;
       let verifiedChangeId = new ObjectId(changedItem._id);
 
-      console.log(changedItem);
-
       try {
         const updatedItem = await db.collection('partners').findOneAndUpdate(
           { _id: verifiedChangeId },
