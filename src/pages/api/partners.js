@@ -1,13 +1,14 @@
 import clientPromise from '../../lib/mongodb';
+import { ObjectId } from 'mongodb';
 
 export default async function handler(req, res) {
   const client = await clientPromise;
   const db = client.db('wishListItems');
   switch (req.method) {
     case 'POST':
-      let bodyObject = JSON.parse(req.body);
+      let bodyObject = req.body;
       let myPost = await db.collection('partners').insertOne(bodyObject);
-      res.json(myPost.ops[0]);
+      res.json(myPost);
       break;
     case 'GET':
       const allPosts = await db.collection('partners').find({}).toArray();
@@ -31,6 +32,8 @@ export default async function handler(req, res) {
     case 'PUT':
       let changedItem = req.body;
       let verifiedChangeId = new ObjectId(changedItem._id);
+
+      console.log(changedItem);
 
       try {
         const updatedItem = await db.collection('partners').findOneAndUpdate(

@@ -4,10 +4,8 @@ import { useSession, signIn, getSession } from 'next-auth/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
 import dayjs from 'dayjs';
 import HandlePartners from '@/components/HaldlePartners';
 

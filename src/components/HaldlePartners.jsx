@@ -12,6 +12,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import dayjs from 'dayjs';
 
 let initialValues = {
   _id: '',
@@ -57,16 +58,23 @@ export default function HandlePartners({ selectedRow, updateList }) {
       const value = async () => {
         try {
           //Getting wishlist values
-          const resWishlist = await fetch('/api/partners');
-          const jsonWishlist = await resWishlist.json();
+          const resPartners = await fetch('/api/partners');
+          const jsonPartners = await resPartners.json();
           setIsEdit(true);
-          await jsonWishlist.data.map((wishlistItem) => {
-            if (wishlistItem._id === selectedTable) {
+          await jsonPartners.data.map((partnerItem) => {
+            if (partnerItem._id === selectedTable) {
+              let dateAdjust = dayjs(partnerItem.datePosted).format(
+                'YYYY-MM-DD'
+              );
               initialValues = {
-                _id: wishlistItem._id,
-                name: wishlistItem.name,
-                link: wishlistItem.link,
-                imgLink: wishlistItem.imgLink,
+                _id: partnerItem._id,
+                name: partnerItem.name,
+                link: partnerItem.link,
+                datePosted: dateAdjust,
+                imgLink: partnerItem.imgLink,
+                coupon: partnerItem.coupon,
+                descountCoupon: partnerItem.descountCoupon,
+                reelLink: partnerItem.reelLink,
               };
               setOpen(true);
             } else {
@@ -84,7 +92,11 @@ export default function HandlePartners({ selectedRow, updateList }) {
         _id: '',
         name: '',
         link: '',
+        datePosted: '',
         imgLink: '',
+        coupon: '',
+        descountCoupon: '',
+        reelLink: '',
       };
       setIsEdit(false);
       setOpen(true);
@@ -124,10 +136,6 @@ export default function HandlePartners({ selectedRow, updateList }) {
         _id: values._id,
         name: values.name,
         link: values.link,
-        imgLink: values.imgLink,
-        _id: values._id,
-        name: values.name,
-        link: values.link,
         datePosted: values.datePosted,
         imgLink: values.imgLink,
         coupon: values.coupon,
@@ -136,10 +144,6 @@ export default function HandlePartners({ selectedRow, updateList }) {
       };
     } else {
       fieldValues = {
-        name: values.name,
-        link: values.link,
-        imgLink: values.imgLink,
-        _id: values._id,
         name: values.name,
         link: values.link,
         datePosted: values.datePosted,
@@ -312,6 +316,20 @@ export default function HandlePartners({ selectedRow, updateList }) {
                     <TextField
                       fullWidth
                       variant="filled"
+                      type="date"
+                      label="Date Posted"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.datePosted}
+                      name="datePosted"
+                      error={!!touched.datePosted && !!errors.datePosted}
+                      helperText={touched.datePosted && errors.datePosted}
+                      sx={{ gridColumn: 'span 4' }}
+                    />
+
+                    <TextField
+                      fullWidth
+                      variant="filled"
                       type="text"
                       label="Image Link"
                       onBlur={handleBlur}
@@ -320,6 +338,51 @@ export default function HandlePartners({ selectedRow, updateList }) {
                       name="imgLink"
                       error={!!touched.imgLink && !!errors.imgLink}
                       helperText={touched.imgLink && errors.imgLink}
+                      sx={{ gridColumn: 'span 4' }}
+                    />
+
+                    <TextField
+                      fullWidth
+                      variant="filled"
+                      type="text"
+                      label="Coupon Code"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.coupon}
+                      name="coupon"
+                      error={!!touched.coupon && !!errors.coupon}
+                      helperText={touched.coupon && errors.coupon}
+                      sx={{ gridColumn: 'span 4' }}
+                    />
+                    <TextField
+                      fullWidth
+                      variant="filled"
+                      type="text"
+                      label="Coupon Discount Amount"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.descountCoupon}
+                      name="descountCoupon"
+                      error={
+                        !!touched.descountCoupon && !!errors.descountCoupon
+                      }
+                      helperText={
+                        touched.descountCoupon && errors.descountCoupon
+                      }
+                      sx={{ gridColumn: 'span 4' }}
+                    />
+
+                    <TextField
+                      fullWidth
+                      variant="filled"
+                      type="text"
+                      label="Reel Link"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.reelLink}
+                      name="reelLink"
+                      error={!!touched.reelLink && !!errors.reelLink}
+                      helperText={touched.reelLink && errors.reelLink}
                       sx={{ gridColumn: 'span 4' }}
                     />
                   </Box>
