@@ -12,6 +12,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 let initialValues = {
   _id: '',
@@ -31,9 +32,11 @@ export default function HandleWishList({ selectedRow, updateList }) {
   const [selectedTable, setSelectedTable] = useState('');
   const [editStatus, setEditStatus] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
-  let handleSelected = selectedRow;
 
+  let handleSelected = selectedRow;
   const router = useRouter();
+
+  const matches = useMediaQuery('(max-width:640px)');
 
   useEffect(() => {
     if (selectedRow == undefined) {
@@ -153,8 +156,21 @@ export default function HandleWishList({ selectedRow, updateList }) {
 
   return (
     <Box>
-      <Box display="flex" marginBottom="20px" justifyContent="space-between">
-        <Box display="flex" flexDirection="row" gap="15px">
+      <Box
+        display="flex"
+        {...(matches
+          ? { flexDirection: 'column', gap: '15px' }
+          : { flexDirection: 'row' })}
+        marginBottom="20px"
+        justifyContent="space-between"
+      >
+        <Box
+          display="flex"
+          {...(matches
+            ? { flexDirection: 'column' }
+            : { flexDirection: 'row' })}
+          gap="15px"
+        >
           <Button
             sx={{
               backgroundColor: ' 	#097969',
