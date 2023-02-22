@@ -85,14 +85,21 @@ export default function Partners() {
                 border: 'none',
               },
               '& .MuiDataGrid-cell': {
+                ...(matches && {
+                  maxWidth: '100% !important',
+                }),
                 borderBottom: 'none',
               },
               '& .name-column--cell': {
                 color: '#FFFBF5',
               },
-              '& .MuiDataGrid-columnHeaders': {
+              '& .MuiDataGrid-columnHeader': {
                 backgroundColor: '#404258',
                 borderBottom: 'none',
+                ...(matches && {
+                  maxWidth: '100% !important',
+                  width: '100% !important',
+                }),
               },
               '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: '#374151',
