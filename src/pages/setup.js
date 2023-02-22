@@ -4,10 +4,10 @@ import { useSession, signIn, getSession } from 'next-auth/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import HandleSetupParts from '@/components/HandleSetupParts';
 
 export default function Setup() {
   const { data: session } = useSession();
@@ -15,6 +15,9 @@ export default function Setup() {
   const [isLogged, setIsLogged] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
+  const [selectedRow, setSelectedRow] = useState([]);
+
+  const matches = useMediaQuery('(max-width:640px)');
 
   const columns = [
     { field: 'name', headerName: 'Name', flex: 1 },
@@ -32,18 +35,22 @@ export default function Setup() {
       }
     });
 
-    const getWishList = async () => {
+    const getSetupParts = async () => {
       try {
         //Getting wishlist values
-        const resWishlist = await fetch('/api/setupParts');
-        const jsonWishlist = await resWishlist.json();
-        setWishlist(jsonWishlist.data);
+        const resSetupParts = await fetch('/api/setupParts');
+        const jsonSetupParts = await resSetupParts.json();
+        setWishlist(jsonSetupParts.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getWishList();
+    getSetupParts();
   }, []);
+
+  const updateList = (fetchList) => {
+    setWishlist(fetchList.data);
+  };
 
   return isLogged ? (
     <>
@@ -53,25 +60,37 @@ export default function Setup() {
       <Box display="flex" position="relative" width="100vw" height="100vh">
         <Sidebar session={session} />
         <Box flex="1">
-          <Typography m="40px 40px 0 40px" variant="h3">
+          <Typography
+            {...(matches
+              ? { margin: '40px 20px 0 20px', fontSize: '2rem' }
+              : { margin: '40px 40px 0 40px' })}
+            variant="h3"
+          >
             Setup Parts
           </Typography>
           <Box
-            m="40px"
+            {...(matches ? { margin: '20px' } : { margin: '40px' })}
             height="60vh"
             sx={{
               '& .MuiDataGrid-root': {
                 border: 'none',
               },
               '& .MuiDataGrid-cell': {
+                ...(matches && {
+                  maxWidth: '100% !important',
+                }),
                 borderBottom: 'none',
               },
               '& .name-column--cell': {
                 color: '#FFFBF5',
               },
-              '& .MuiDataGrid-columnHeaders': {
+              '& .MuiDataGrid-columnHeader': {
                 backgroundColor: '#404258',
                 borderBottom: 'none',
+                ...(matches && {
+                  maxWidth: '100% !important',
+                  width: '100% !important',
+                }),
               },
               '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: '#374151',
@@ -96,46 +115,10 @@ export default function Setup() {
               },
             }}
           >
-            <Box
-              display="flex"
-              flexDirection="row"
-              gap="15px"
-              marginBottom="20px"
-            >
-              <Button
-                sx={{
-                  backgroundColor: '#810CA8',
-                  border: 'none',
-                  fontWeight: 'bold',
-                  color: '#FFFBF5',
-                  ':hover': {
-                    backgroundColor: '#2D033B',
-                    border: 'none',
-                  },
-                }}
-                variant="outlined"
-                startIcon={<EditIcon />}
-              >
-                EDIT
-              </Button>
-
-              <Button
-                sx={{
-                  backgroundColor: '#9f2525',
-                  border: 'none',
-                  fontWeight: 'bold',
-                  color: '#FFFBF5',
-                  ':hover': {
-                    backgroundColor: '#5e1616',
-                    border: 'none',
-                  },
-                }}
-                variant="outlined"
-                startIcon={<DeleteForeverIcon />}
-              >
-                Delete
-              </Button>
-            </Box>
+            <HandleSetupParts
+              updateList={updateList}
+              selectedRow={selectedRow}
+            />
             <DataGrid
               getRowId={(row) => row._id}
               rows={wishlist}
@@ -148,9 +131,11 @@ export default function Setup() {
                   const selectionSet = new Set(selectionModel);
                   const result = selection.filter((s) => !selectionSet.has(s));
 
+                  setSelectedRow(result);
                   setSelectionModel(result);
                 } else {
                   setSelectionModel(selection);
+                  setSelectedRow(selection);
                 }
               }}
             />

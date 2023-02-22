@@ -6,7 +6,7 @@ import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
 import { Box, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 import HandleWishList from '@/components/HandleWishList';
 
 export default function Wishlist() {
@@ -16,6 +16,8 @@ export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
+
+  const matches = useMediaQuery('(max-width:640px)');
 
   const columns = [
     { field: 'name', headerName: 'Name', flex: 1 },
@@ -58,25 +60,37 @@ export default function Wishlist() {
       <Box display="flex" position="relative" width="100vw" height="100vh">
         <Sidebar session={session} />
         <Box flex="1">
-          <Typography m="40px 40px 0 40px" variant="h3">
+          <Typography
+            {...(matches
+              ? { margin: '40px 20px 0 20px', fontSize: '2rem' }
+              : { margin: '40px 40px 0 40px' })}
+            variant="h3"
+          >
             Wishlist Items
           </Typography>
           <Box
-            m="40px"
+            {...(matches ? { margin: '20px' } : { margin: '40px' })}
             height="60vh"
             sx={{
               '& .MuiDataGrid-root': {
                 border: 'none',
               },
               '& .MuiDataGrid-cell': {
+                ...(matches && {
+                  maxWidth: '100% !important',
+                }),
                 borderBottom: 'none',
               },
               '& .name-column--cell': {
                 color: '#FFFBF5',
               },
-              '& .MuiDataGrid-columnHeaders': {
+              '& .MuiDataGrid-columnHeader': {
                 backgroundColor: '#404258',
                 borderBottom: 'none',
+                ...(matches && {
+                  maxWidth: '100% !important',
+                  width: '100% !important',
+                }),
               },
               '& .MuiDataGrid-virtualScroller': {
                 backgroundColor: '#374151',

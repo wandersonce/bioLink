@@ -1,13 +1,14 @@
 import clientPromise from '../../lib/mongodb';
+import { ObjectId } from 'mongodb';
 
 export default async function handler(req, res) {
   const client = await clientPromise;
   const db = client.db('wishListItems');
   switch (req.method) {
     case 'POST':
-      let bodyObject = JSON.parse(req.body);
+      let bodyObject = req.body;
       let myPost = await db.collection('setupParts').insertOne(bodyObject);
-      res.json(myPost.ops[0]);
+      res.json(myPost);
       break;
     case 'GET':
       const allPosts = await db.collection('setupParts').find({}).toArray();
@@ -38,7 +39,7 @@ export default async function handler(req, res) {
           {
             $set: {
               name: changedItem.name,
-              productLink: changedItem.link,
+              productLink: changedItem.productLink,
               imgLink: changedItem.imgLink,
             },
           }
