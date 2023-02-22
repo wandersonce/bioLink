@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const initialValues = {
   name: '',
@@ -40,6 +41,7 @@ async function createUser(name, email, password, imgUrl) {
 // This gets handled by the [...nextauth] endpoint
 function AuthForm() {
   const [registered, setRegistered] = useState(false);
+  const matches = useMediaQuery('(max-width:640px)');
 
   // We keep track of whether in a login / or register state
   const [isLogin, setIsLogin] = useState(true);
@@ -81,7 +83,7 @@ function AuthForm() {
   };
 
   return (
-    <section className="max-w-xl mx-auto my-7">
+    <section className="max-w-full w-full sm:max-w-xl mx-auto my-7">
       {!registered ? (
         <>
           <Typography
@@ -109,7 +111,9 @@ function AuthForm() {
                     <Box
                       display="grid"
                       gap="30px"
-                      gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                      {...(matches
+                        ? { gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }
+                        : { gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' })}
                       sx={{
                         '& .MuiInputBase-input': {
                           backgroundColor: '#374151',
@@ -171,7 +175,7 @@ function AuthForm() {
                           fullWidth
                           variant="filled"
                           type="text"
-                          label="Image URL"
+                          label="Profile Image URL"
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values.imgUrl}
@@ -191,6 +195,9 @@ function AuthForm() {
                       justifyContent="flex-start"
                       mt="20px"
                       gap="15px"
+                      {...(matches
+                        ? { flexDirection: 'column' }
+                        : { flexDirection: 'row' })}
                       sx={{
                         '& .MuiButton-outlined': {
                           backgroundColor: '#810CA8',
