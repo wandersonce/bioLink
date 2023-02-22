@@ -7,7 +7,8 @@ import Sidebar from '@/components/Sidebar';
 import { Box, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
-import HandlePartners from '@/components/HaldlePartners';
+import HandlePartners from '@/components/HandlePartners';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Partners() {
   const { data: session } = useSession();
@@ -16,6 +17,8 @@ export default function Partners() {
   const [partners, setPartners] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
+
+  const matches = useMediaQuery('(max-width:640px)');
 
   const columns = [
     { field: 'name', headerName: 'Name', flex: 1 },
@@ -66,11 +69,16 @@ export default function Partners() {
       <Box display="flex" position="relative" width="100vw" height="100vh">
         <Sidebar session={session} />
         <Box flex="1">
-          <Typography m="40px 40px 0 40px" variant="h3">
+          <Typography
+            {...(matches
+              ? { margin: '40px 20px 0 20px', fontSize: '2rem' }
+              : { margin: '40px 40px 0 40px' })}
+            variant="h3"
+          >
             Partners Posts
           </Typography>
           <Box
-            m="40px"
+            {...(matches ? { margin: '20px' } : { margin: '40px' })}
             height="60vh"
             sx={{
               '& .MuiDataGrid-root': {
