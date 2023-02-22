@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -43,7 +42,6 @@ export default function HandlePartners({ selectedRow, updateList }) {
   const [isEdit, setIsEdit] = useState(false);
 
   let handleSelected = selectedRow;
-  const router = useRouter();
 
   const matches = useMediaQuery('(max-width:640px)');
 
@@ -91,16 +89,6 @@ export default function HandlePartners({ selectedRow, updateList }) {
 
       value();
     } else {
-      initialValues = {
-        _id: '',
-        name: '',
-        link: '',
-        datePosted: '',
-        imgLink: '',
-        coupon: '',
-        descountCoupon: '',
-        reelLink: '',
-      };
       setIsEdit(false);
       setOpen(true);
     }
