@@ -9,6 +9,8 @@ export default function NotLoggedUsers() {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
+      width="100vw"
+      height="100vh"
     >
       <h1 className="text-xl">Hello, You are not logged!</h1>
       <Link href="/login">

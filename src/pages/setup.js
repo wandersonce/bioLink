@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import HandleSetupParts from '@/components/HandleSetupParts';
 import CircularProgress from '@mui/material/CircularProgress';
 import NotLoggedUsers from '@/components/NotLoggedUsers';
+import UserViewAccess from '@/components/UserViewAccess';
 
 export default function Setup() {
   const { data: session, status } = useSession();
@@ -15,6 +16,7 @@ export default function Setup() {
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const matches = useMediaQuery('(max-width:640px)');
 
@@ -29,6 +31,7 @@ export default function Setup() {
     getSession().then((session) => {
       if (session) {
         setIsLogged(true);
+        session.user.role === 'admin' && setIsAdmin(true);
       }
     });
 
@@ -49,14 +52,29 @@ export default function Setup() {
   if (status == 'unauthenticated') {
     sessionStatus = <NotLoggedUsers />;
   } else if (status == 'loading') {
-    sessionStatus = <CircularProgress color="inherit" />;
+    sessionStatus = (
+      <Box
+        display="flex"
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+        width="100vw"
+        height="100vh"
+      >
+        <CircularProgress color="inherit" />
+      </Box>
+    );
+  }
+
+  if (session?.user.role === 'user') {
+    sessionStatus = <UserViewAccess />;
   }
 
   const updateList = (fetchList) => {
     setWishlist(fetchList.data);
   };
 
-  return isLogged ? (
+  return isLogged && isAdmin ? (
     <>
       <Head>
         <title>BamGames Setup Parts</title>
@@ -148,16 +166,6 @@ export default function Setup() {
       </Box>
     </>
   ) : (
-    <Box
-      display="flex"
-      justifyContent="center"
-      flexDirection="column"
-      alignItems="center"
-      position="relative"
-      width="100vw"
-      height="100vh"
-    >
-      {sessionStatus}
-    </Box>
+    <>{sessionStatus}</>
   );
 }

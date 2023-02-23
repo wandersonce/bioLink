@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import HandleWishList from '@/components/HandleWishList';
 import CircularProgress from '@mui/material/CircularProgress';
 import NotLoggedUsers from '@/components/NotLoggedUsers';
+import UserViewAccess from '@/components/UserViewAccess';
 
 export default function Wishlist() {
   const { data: session, status } = useSession();
@@ -15,6 +16,7 @@ export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const matches = useMediaQuery('(max-width:640px)');
 
@@ -28,6 +30,7 @@ export default function Wishlist() {
   useEffect(() => {
     getSession().then((session) => {
       if (session) {
+        session.user.role === 'admin' && setIsAdmin(true);
         setIsLogged(true);
       }
     });
@@ -49,14 +52,29 @@ export default function Wishlist() {
   if (status == 'unauthenticated') {
     sessionStatus = <NotLoggedUsers />;
   } else if (status == 'loading') {
-    sessionStatus = <CircularProgress color="inherit" />;
+    sessionStatus = (
+      <Box
+        display="flex"
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+        width="100vw"
+        height="100vh"
+      >
+        <CircularProgress color="inherit" />
+      </Box>
+    );
+  }
+
+  if (session?.user.role === 'user') {
+    sessionStatus = <UserViewAccess />;
   }
 
   const updateList = (fetchList) => {
     setWishlist(fetchList.data);
   };
 
-  return isLogged ? (
+  return isLogged && isAdmin ? (
     <>
       <Head>
         <title>BamGames Wishlist</title>
@@ -145,16 +163,6 @@ export default function Wishlist() {
       </Box>
     </>
   ) : (
-    <Box
-      display="flex"
-      justifyContent="center"
-      flexDirection="column"
-      alignItems="center"
-      position="relative"
-      width="100vw"
-      height="100vh"
-    >
-      {sessionStatus}
-    </Box>
+    <>{sessionStatus}</>
   );
 }

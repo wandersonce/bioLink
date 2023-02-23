@@ -120,10 +120,13 @@ export default function Sidebar({ session }) {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="Profile User"
-                  width="100px"
-                  height="100px"
                   src={session?.user.imgUrl}
-                  style={{ borderRadius: '50%' }}
+                  style={{
+                    borderRadius: '50%',
+                    width: '130px',
+                    height: '130px',
+                    objectFit: 'cover',
+                  }}
                 />
               </Box>
               <Box textAlign="center">
