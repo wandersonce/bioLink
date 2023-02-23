@@ -8,9 +8,11 @@ import { Box, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import HandleSetupParts from '@/components/HandleSetupParts';
+import CircularProgress from '@mui/material/CircularProgress';
+import NotLoggedUsers from '@/components/NotLoggedUsers';
 
 export default function Setup() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
   const [wishlist, setWishlist] = useState([]);
@@ -30,8 +32,6 @@ export default function Setup() {
     getSession().then((session) => {
       if (session) {
         setIsLogged(true);
-      } else {
-        router.replace('/login');
       }
     });
 
@@ -47,6 +47,13 @@ export default function Setup() {
     };
     getSetupParts();
   }, []);
+
+  let sessionStatus;
+  if (status == 'unauthenticated') {
+    sessionStatus = <NotLoggedUsers />;
+  } else if (status == 'loading') {
+    sessionStatus = <CircularProgress color="inherit" />;
+  }
 
   const updateList = (fetchList) => {
     setWishlist(fetchList.data);
@@ -144,14 +151,16 @@ export default function Setup() {
       </Box>
     </>
   ) : (
-    <>
-      <Head>
-        <title>BamGames Setup Parts</title>
-      </Head>
-      <h1>Hello, You are not logged!</h1>
-      <Link href="/login">
-        <button onClick={() => signIn()}>Sign In</button>
-      </Link>
-    </>
+    <Box
+      display="flex"
+      justifyContent="center"
+      flexDirection="column"
+      alignItems="center"
+      position="relative"
+      width="100vw"
+      height="100vh"
+    >
+      {sessionStatus}
+    </Box>
   );
 }
