@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { useSession, getSession } from 'next-auth/react';
 import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
@@ -12,7 +11,6 @@ import NotLoggedUsers from '@/components/NotLoggedUsers';
 
 export default function Wishlist() {
   const { data: session, status } = useSession();
-  const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);

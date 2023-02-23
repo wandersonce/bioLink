@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useSession, signIn, getSession } from 'next-auth/react';
-import Link from 'next/link';
+import { useSession, getSession } from 'next-auth/react';
 import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
 import { Box, Typography } from '@mui/material';
@@ -9,10 +7,11 @@ import { DataGrid } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import HandlePartners from '@/components/HandlePartners';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import CircularProgress from '@mui/material/CircularProgress';
+import NotLoggedUsers from '@/components/NotLoggedUsers';
 
 export default function Partners() {
-  const { data: session } = useSession();
-  const router = useRouter();
+  const { data: session, status } = useSession();
   const [isLogged, setIsLogged] = useState(false);
   const [partners, setPartners] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
@@ -39,8 +38,6 @@ export default function Partners() {
     getSession().then((session) => {
       if (session) {
         setIsLogged(true);
-      } else {
-        router.replace('/login');
       }
     });
 
@@ -56,6 +53,13 @@ export default function Partners() {
     };
     getPartners();
   }, []);
+
+  let sessionStatus;
+  if (status == 'unauthenticated') {
+    sessionStatus = <NotLoggedUsers />;
+  } else if (status == 'loading') {
+    sessionStatus = <CircularProgress color="inherit" />;
+  }
 
   const updateList = (fetchList) => {
     setPartners(fetchList.data);
@@ -151,14 +155,16 @@ export default function Partners() {
       </Box>
     </>
   ) : (
-    <>
-      <Head>
-        <title>BamGames Partners</title>
-      </Head>
-      <h1>Hello, You are not logged!</h1>
-      <Link href="/login">
-        <button onClick={() => signIn()}>Sign In</button>
-      </Link>
-    </>
+    <Box
+      display="flex"
+      justifyContent="center"
+      flexDirection="column"
+      alignItems="center"
+      position="relative"
+      width="100vw"
+      height="100vh"
+    >
+      {sessionStatus}
+    </Box>
   );
 }

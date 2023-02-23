@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useSession, signIn, getSession } from 'next-auth/react';
-import Link from 'next/link';
+import { useSession, getSession } from 'next-auth/react';
 import Head from 'next/head';
 import Sidebar from '@/components/Sidebar';
 import { Box, Typography } from '@mui/material';
@@ -13,7 +11,6 @@ import NotLoggedUsers from '@/components/NotLoggedUsers';
 
 export default function Setup() {
   const { data: session, status } = useSession();
-  const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
