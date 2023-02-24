@@ -19,9 +19,7 @@ export default function Wishlist() {
   const [selectedRow, setSelectedRow] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const { wishlistItems } = useUtilitiesContext();
-
-  // console.log(wishlistItems);
+  const { wishlistItems, setWishlistItems } = useUtilitiesContext();
 
   const matches = useMediaQuery('(max-width:640px)');
 
@@ -77,7 +75,7 @@ export default function Wishlist() {
   }
 
   const updateList = (fetchList) => {
-    setWishlist(fetchList.data);
+    setWishlistItems(fetchList.data);
   };
 
   return isLogged && isAdmin ? (
@@ -147,7 +145,7 @@ export default function Wishlist() {
 
             <DataGrid
               getRowId={(row) => row._id}
-              rows={wishlist}
+              rows={wishlistItems}
               columns={columns}
               checkboxSelection
               selectionModel={selectionModel}

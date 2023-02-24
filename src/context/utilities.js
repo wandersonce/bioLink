@@ -29,7 +29,7 @@ export default function FetchWishlist({ children }) {
   // const wishlistRes = getWishList();
 
   return (
-    <UtilitiesContext.Provider value={{ wishlistItems }}>
+    <UtilitiesContext.Provider value={{ wishlistItems, setWishlistItems }}>
       {children}
     </UtilitiesContext.Provider>
   );
