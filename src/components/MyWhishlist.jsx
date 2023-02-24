@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export default function MyWhishlist({ allPosts }) {
   const [wishList, setWishList] = useState([]);
-  const wishListItems = allPosts.data;
+  const wishListItems = allPosts;
 
   useEffect(() => {
     setWishList(wishListItems);

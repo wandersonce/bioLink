@@ -1,5 +1,6 @@
 import { SessionProvider } from 'next-auth/react';
 import { ProSidebarProvider } from 'react-pro-sidebar';
+import FetchWishlist from '@/context/utilities';
 import '@/styles/globals.css';
 
 export default function App({
@@ -9,7 +10,9 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <ProSidebarProvider>
-        <Component {...pageProps} />
+        <FetchWishlist>
+          <Component {...pageProps} />
+        </FetchWishlist>
       </ProSidebarProvider>
     </SessionProvider>
   );

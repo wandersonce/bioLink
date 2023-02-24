@@ -9,6 +9,7 @@ import HandleWishList from '@/components/HandleWishList';
 import CircularProgress from '@mui/material/CircularProgress';
 import NotLoggedUsers from '@/components/NotLoggedUsers';
 import UserViewAccess from '@/components/UserViewAccess';
+import { useUtilitiesContext } from '@/context/utilities';
 
 export default function Wishlist() {
   const { data: session, status } = useSession();
@@ -17,6 +18,10 @@ export default function Wishlist() {
   const [selectionModel, setSelectionModel] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const { wishlistItems, getWishlist } = useUtilitiesContext();
+
+  // console.log(wishlistItems);
 
   const matches = useMediaQuery('(max-width:640px)');
 
@@ -38,9 +43,10 @@ export default function Wishlist() {
     const getWishList = async () => {
       try {
         //Getting wishlist values
-        const resWishlist = await fetch('/api/wishlist');
-        const jsonWishlist = await resWishlist.json();
-        setWishlist(jsonWishlist.data);
+        // const resWishlist = await fetch('/api/wishlist');
+        // const jsonWishlist = await resWishlist.json();
+
+        setWishlist(wishlistItems);
       } catch (err) {
         console.log(err);
       }

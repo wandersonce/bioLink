@@ -17,6 +17,7 @@ import MyWhishlist from '../components/MyWhishlist';
 import RecentPartners from '../components/RecentPartners';
 import Footer from '../components/Footer';
 import SetupParts from '../components/SetupParts';
+import { useUtilitiesContext } from '@/context/utilities';
 
 export default function Home(props) {
   const [wishlist, setWishlist] = useState([]);
@@ -28,13 +29,17 @@ export default function Home(props) {
     },
   });
 
+  const { wishlistItems, getWishlist } = useUtilitiesContext();
+
   useEffect(() => {
+    setWishlist(wishlistItems);
+    console.log(wishlistItems);
     const values = async () => {
       try {
-        //Getting wishlist values
-        const resWishlist = await fetch('/api/wishlist');
-        const jsonWishlist = await resWishlist.json();
-        setWishlist(jsonWishlist);
+        // //Getting wishlist values
+        // const resWishlist = await fetch('/api/wishlist');
+        // const jsonWishlist = await resWishlist.json();
+        // setWishlist(jsonWishlist);
 
         //Getting Partners values
         const resPartners = await fetch('/api/partners');
@@ -173,28 +178,3 @@ export default function Home(props) {
     </>
   );
 }
-
-// export async function getStaticProps(context) {
-//   try {
-//     // Getting Partner Items
-//     let partnersRes = await fetch(
-//       'https://bamgamesofc.vercel.app/api/partners'
-//     );
-//     let partners = await partnersRes.json();
-
-//     // Getting Partner Items
-//     let setupPartsRes = await fetch(
-//       'https://bamgamesofc.vercel.app/api/setupParts'
-//     );
-//     let setupParts = await setupPartsRes.json();
-
-//     return {
-//       props: {
-//         partners: JSON.parse(JSON.stringify(partners)),
-//         setupParts: JSON.parse(JSON.stringify(setupParts)),
-//       },
-//     };
-//   } catch (e) {
-//     console.error(e);
-//   }
-// }
