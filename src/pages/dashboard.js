@@ -6,11 +6,13 @@ import Sidebar from '@/components/Sidebar';
 import { Box } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import NotLoggedUsers from '@/components/NotLoggedUsers';
+import UserViewAccess from '@/components/UserViewAccess';
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // check if logged in and redirect to home page if so
   useEffect(() => {
@@ -25,7 +27,22 @@ export default function Dashboard() {
   if (status == 'unauthenticated') {
     sessionStatus = <NotLoggedUsers />;
   } else if (status == 'loading') {
-    sessionStatus = <CircularProgress color="inherit" />;
+    sessionStatus = (
+      <Box
+        display="flex"
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+        width="100vw"
+        height="100vh"
+      >
+        <CircularProgress color="inherit" />
+      </Box>
+    );
+  }
+
+  if (session?.user.role === 'user') {
+    sessionStatus = <UserViewAccess />;
   }
 
   return isLogged ? (
@@ -55,7 +72,7 @@ export default function Dashboard() {
       width="100vw"
       height="100vh"
     >
-      {sessionStatus}
+      <>{sessionStatus}</>
     </Box>
   );
 }
