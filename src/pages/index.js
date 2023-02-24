@@ -20,7 +20,7 @@ import SetupParts from '../components/SetupParts';
 import { useUtilitiesContext } from '@/context/utilities';
 
 export default function Home(props) {
-  const [wishlist, setWishlist] = useState([]);
+  // const [wishlist, setWishlist] = useState([]);
   const [partners, setPartners] = useState([]);
   const [setupParts, setSetupParts] = useState([]);
   const theme = createTheme({
@@ -29,11 +29,9 @@ export default function Home(props) {
     },
   });
 
-  const { wishlistItems, getWishlist } = useUtilitiesContext();
+  const { wishlistItems } = useUtilitiesContext();
 
   useEffect(() => {
-    setWishlist(wishlistItems);
-    console.log(wishlistItems);
     const values = async () => {
       try {
         // //Getting wishlist values
@@ -119,7 +117,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <MyWhishlist allPosts={wishlist} />
+              <MyWhishlist allPosts={wishlistItems} />
             </AccordionDetails>
           </Accordion>
 

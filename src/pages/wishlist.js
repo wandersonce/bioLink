@@ -19,7 +19,7 @@ export default function Wishlist() {
   const [selectedRow, setSelectedRow] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const { wishlistItems, getWishlist } = useUtilitiesContext();
+  const { wishlistItems } = useUtilitiesContext();
 
   // console.log(wishlistItems);
 
