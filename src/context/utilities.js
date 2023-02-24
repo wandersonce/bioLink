@@ -6,30 +6,21 @@ export default function FetchWishlist({ children }) {
   const [wishlistItems, setWishlistItems] = useState([]);
 
   useEffect(() => {
-    async function getWishlist() {
-      fetch('/api/wishlist')
-        .then((response) => response.json())
-        .then((resData) => {
-          setWishlistItems(resData.data);
-        });
-    }
     getWishlist();
   }, []);
 
-  // const getWishList = async () => {
-  //   try {
-  //     //Getting wishlist values
-  //     const resWishlist = await fetch('/api/wishlist');
-  //     const jsonWishlist = await resWishlist.json();
-  //     return jsonWishlist.data;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  // const wishlistRes = getWishList();
+  async function getWishlist() {
+    fetch('/api/wishlist')
+      .then((response) => response.json())
+      .then((resData) => {
+        setWishlistItems(resData.data);
+      });
+  }
 
   return (
-    <UtilitiesContext.Provider value={{ wishlistItems, setWishlistItems }}>
+    <UtilitiesContext.Provider
+      value={{ wishlistItems, setWishlistItems, getWishlist }}
+    >
       {children}
     </UtilitiesContext.Provider>
   );

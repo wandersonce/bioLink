@@ -14,7 +14,6 @@ import { useUtilitiesContext } from '@/context/utilities';
 export default function Wishlist() {
   const { data: session, status } = useSession();
   const [isLogged, setIsLogged] = useState(false);
-  const [wishlist, setWishlist] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -37,19 +36,6 @@ export default function Wishlist() {
         setIsLogged(true);
       }
     });
-
-    const getWishList = async () => {
-      try {
-        //Getting wishlist values
-        // const resWishlist = await fetch('/api/wishlist');
-        // const jsonWishlist = await resWishlist.json();
-
-        setWishlist(wishlistItems);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getWishList();
   }, []);
 
   let sessionStatus;
@@ -75,7 +61,7 @@ export default function Wishlist() {
   }
 
   const updateList = (fetchList) => {
-    setWishlistItems(fetchList.data);
+    setWishlistItems(fetchList);
   };
 
   return isLogged && isAdmin ? (

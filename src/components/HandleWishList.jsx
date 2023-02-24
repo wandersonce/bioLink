@@ -12,6 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useUtilitiesContext } from '@/context/utilities';
 
 let initialValues = {
   _id: '',
@@ -34,6 +35,7 @@ export default function HandleWishList({ selectedRow, updateList }) {
 
   let handleSelected = selectedRow;
 
+  const { wishlistItems, getWishlist } = useUtilitiesContext();
   const matches = useMediaQuery('(max-width:640px)');
 
   useEffect(() => {
@@ -48,31 +50,30 @@ export default function HandleWishList({ selectedRow, updateList }) {
   const handleClickOpen = (clickedType) => {
     if (clickedType === 'edit') {
       const value = async () => {
-        try {
-          //Getting wishlist values
-          const resWishlist = await fetch('/api/wishlist');
-          const jsonWishlist = await resWishlist.json();
-          setIsEdit(true);
-          await jsonWishlist.data.map((wishlistItem) => {
-            if (wishlistItem._id === selectedTable) {
-              initialValues = {
-                _id: wishlistItem._id,
-                name: wishlistItem.name,
-                link: wishlistItem.link,
-                imgLink: wishlistItem.imgLink,
-              };
-              setOpen(true);
-            } else {
-              return;
-            }
-          });
-        } catch (err) {
-          console.log(err);
-        }
+        //Getting wishlist values
+        setIsEdit(true);
+        await wishlistItems.map((wishlistItem) => {
+          if (wishlistItem._id === selectedTable) {
+            initialValues = {
+              _id: wishlistItem._id,
+              name: wishlistItem.name,
+              link: wishlistItem.link,
+              imgLink: wishlistItem.imgLink,
+            };
+            setOpen(true);
+          } else {
+            return;
+          }
+        });
       };
 
       value();
     } else {
+      initialValues = {
+        name: '',
+        link: '',
+        imgLink: '',
+      };
       setIsEdit(false);
       setOpen(true);
     }
@@ -92,10 +93,11 @@ export default function HandleWishList({ selectedRow, updateList }) {
     })
       .then(async (res) => {
         if (res.status === 200) {
-          const resWishlist = await fetch('/api/wishlist');
-          const jsonWishlist = await resWishlist.json();
+          // const resWishlist = await fetch('/api/wishlist');
+          // const jsonWishlist = await resWishlist.json();
 
-          updateList(jsonWishlist);
+          getWishlist();
+          updateList(wishlistItems);
         }
       })
       .catch((error) => {
@@ -132,10 +134,10 @@ export default function HandleWishList({ selectedRow, updateList }) {
     })
       .then(async (res) => {
         if (res.status === 200) {
-          const resWishlist = await fetch('/api/wishlist');
-          const jsonWishlist = await resWishlist.json();
-
-          updateList(jsonWishlist);
+          // const resWishlist = await fetch('/api/wishlist');
+          // const jsonWishlist = await resWishlist.json();
+          getWishlist();
+          updateList(wishlistItems);
         }
       })
       .catch((error) => {
