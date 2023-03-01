@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import {
@@ -20,9 +19,6 @@ import SetupParts from '../components/SetupParts';
 import { useUtilitiesContext } from '@/context/utilities';
 
 export default function Home(props) {
-  // const [wishlist, setWishlist] = useState([]);
-  // const [partners, setPartners] = useState([]);
-  const [setupParts, setSetupParts] = useState([]);
   const theme = createTheme({
     typography: {
       fontFamily: ['Croissant One', 'sans-serif'].join(','),
@@ -30,31 +26,6 @@ export default function Home(props) {
   });
 
   const { wishlistItems, partnersItems, setupItems } = useUtilitiesContext();
-
-  useEffect(() => {
-    const values = async () => {
-      try {
-        // //Getting wishlist values
-        // const resWishlist = await fetch('/api/wishlist');
-        // const jsonWishlist = await resWishlist.json();
-        // setWishlist(jsonWishlist);
-
-        //Getting Partners values
-        // const resPartners = await fetch('/api/partners');
-        // const jsonPartners = await resPartners.json();
-        // setPartners(jsonPartners);
-
-        //Getting Setup Parts values
-        const resSetupParts = await fetch('/api/setupParts');
-        const jsonSetupParts = await resSetupParts.json();
-        setSetupParts(jsonSetupParts);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    values();
-  }, []);
 
   return (
     <>
@@ -167,7 +138,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <SetupParts allParts={setupParts} />
+              <SetupParts allParts={setupItems} />
             </AccordionDetails>
           </Accordion>
         </main>

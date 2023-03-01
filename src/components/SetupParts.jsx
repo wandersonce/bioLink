@@ -3,7 +3,7 @@ import { ListItem, ImageList, ImageListItemBar } from '@mui/material';
 
 export default function SetupParts({ allParts }) {
   const [setupParts, setSetupParts] = useState([]);
-  const setupPartItems = allParts.data;
+  const setupPartItems = allParts;
 
   useEffect(() => {
     setSetupParts(setupPartItems);
