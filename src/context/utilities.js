@@ -9,6 +9,8 @@ export default function UtilitiesFunc({ children }) {
 
   useEffect(() => {
     getWishlist();
+    getPartners();
+    getSetupParts();
   }, []);
 
   async function getWishlist() {

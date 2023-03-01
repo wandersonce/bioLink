@@ -21,7 +21,7 @@ import { useUtilitiesContext } from '@/context/utilities';
 
 export default function Home(props) {
   // const [wishlist, setWishlist] = useState([]);
-  const [partners, setPartners] = useState([]);
+  // const [partners, setPartners] = useState([]);
   const [setupParts, setSetupParts] = useState([]);
   const theme = createTheme({
     typography: {
@@ -29,7 +29,7 @@ export default function Home(props) {
     },
   });
 
-  const { wishlistItems } = useUtilitiesContext();
+  const { wishlistItems, partnersItems, setupItems } = useUtilitiesContext();
 
   useEffect(() => {
     const values = async () => {
@@ -40,9 +40,9 @@ export default function Home(props) {
         // setWishlist(jsonWishlist);
 
         //Getting Partners values
-        const resPartners = await fetch('/api/partners');
-        const jsonPartners = await resPartners.json();
-        setPartners(jsonPartners);
+        // const resPartners = await fetch('/api/partners');
+        // const jsonPartners = await resPartners.json();
+        // setPartners(jsonPartners);
 
         //Getting Setup Parts values
         const resSetupParts = await fetch('/api/setupParts');
@@ -142,7 +142,7 @@ export default function Home(props) {
                 overflowY: 'scroll',
               }}
             >
-              <RecentPartners allPartners={partners} />
+              <RecentPartners allPartners={partnersItems} />
             </AccordionDetails>
           </Accordion>
 
