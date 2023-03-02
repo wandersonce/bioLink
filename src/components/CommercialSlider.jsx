@@ -7,7 +7,15 @@ export default function CommercialSlider() {
     <Box mt="40px">
       <Carousel infiniteLoop swipeable showThumbs={false}>
         <div>
-          <div className="bg-baseGray rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark">
+          <div
+            style={{
+              backgroundImage: 'url("./background1.webp")',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            }}
+            className="bg-baseGray rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark"
+          >
             <Typography
               variant="h5"
               fontSize="32px"
@@ -24,7 +32,15 @@ export default function CommercialSlider() {
           </div>
         </div>
         <div>
-          <div className="bg-baseGrayDark rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark">
+          <div
+            style={{
+              backgroundImage: 'url("./background2.jpg")',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            }}
+            className="bg-baseGrayDark rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark"
+          >
             <Typography
               variant="h5"
               fontSize="32px"
@@ -41,7 +57,15 @@ export default function CommercialSlider() {
           </div>
         </div>
         <div>
-          <div className="bg-grayLight rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark">
+          <div
+            style={{
+              backgroundImage: 'url("./background3.jpg")',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            }}
+            className="bg-grayLight rounded-lg min-h-[200px] h-full flex flex-col justify-center items-center text-beigeDark"
+          >
             <Typography
               variant="h5"
               fontSize="32px"
