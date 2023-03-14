@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import CommercialSlider from '../components/CommercialSlider';
-import CoffeeIcon from '@mui/icons-material/Coffee';
+import { Coin } from 'phosphor-react';
 import { ExpandMore } from '@mui/icons-material';
 import MyWhishlist from '../components/MyWhishlist';
 import RecentPartners from '../components/RecentPartners';
@@ -46,26 +46,26 @@ export default function Home(props) {
       <ThemeProvider theme={theme}>
         <Header />
 
+        {/* PAYPAL DONATION*/}
+        <Button
+          href="https://www.paypal.com/paypalme/wandersoncastro"
+          style={{
+            backgroundColor: '#F7EFE5',
+            color: '#20262E',
+            width: '100%',
+            fontSize: '18px',
+            fontWeight: 'bold',
+            padding: '10px 20px',
+            marginTop: '30px',
+          }}
+          endIcon={<Coin size={28} />}
+        >
+          Contribute to my Setup
+        </Button>
+
         <main className="max-w-[100vw] md:max-w-[780px] p-4 sm:max-w-[480px]">
           {/* COMMERCIAL SLIDER */}
           <CommercialSlider />
-
-          {/* BUY ME A COFFEE BUTTON */}
-          <Button
-            href="https://www.buymeacoffee.com/bamgames"
-            style={{
-              backgroundColor: '#4B5563',
-              color: '#FFFBF5',
-              width: '100%',
-              fontSize: '18px',
-              fontWeight: 'bold',
-              padding: '10px 20px',
-              marginTop: '30px',
-            }}
-            endIcon={<CoffeeIcon />}
-          >
-            Buy Me a Coffee
-          </Button>
 
           {/* WISHLIST ACCORDION */}
           <Accordion
