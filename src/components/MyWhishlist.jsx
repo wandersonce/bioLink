@@ -16,7 +16,7 @@ export default function MyWhishlist({ allPosts }) {
           return (
             <ListItem key={wishListItem._id} sx={{ padding: '5px' }}>
               <a
-                className="w-full"
+                className="w-full h-full bg-beigeDark"
                 rel="noreferrer"
                 target="_blank"
                 href={wishListItem.link}

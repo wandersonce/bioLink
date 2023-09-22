@@ -51,7 +51,7 @@ export default function RecentPartners({ allPartners }) {
                   )}
                   <CardContent
                     sx={{
-                      backgroundColor: '#20262E',
+                      backgroundColor: '#5C8374',
                       textAlign: 'center',
                       display: 'flex',
                       flexDirection: 'column',
@@ -60,14 +60,17 @@ export default function RecentPartners({ allPartners }) {
                       flex: '1',
                     }}
                   >
-                    <Typography fontSize="18px" sx={{ color: '#FFFBF5' }}>
+                    <Typography
+                      fontSize="18px"
+                      sx={{ color: '#FFF', fontWeight: 'bold' }}
+                    >
                       {partnerItem.name}
                     </Typography>
                     {partnerItem.coupon ? (
                       <Typography
                         variant="body2"
                         fontSize="12px"
-                        sx={{ color: '#F7EFE5' }}
+                        sx={{ color: '#FFF' }}
                         mt="5px"
                       >
                         COUPON FOR {partnerItem.descountCoupon}% OFF: {<br />}
@@ -78,8 +81,8 @@ export default function RecentPartners({ allPartners }) {
                     )}
                     <Typography
                       variant="body2"
-                      fontSize="10px"
-                      sx={{ color: '#6B728E' }}
+                      fontSize="12px"
+                      sx={{ color: '#FFF' }}
                       mt="5px"
                     >
                       Reel Posted on:
@@ -92,8 +95,8 @@ export default function RecentPartners({ allPartners }) {
                     sx={{
                       justifyContent: 'center',
                       alignItems: 'center',
-                      backgroundColor: '#20262E',
-                      borderTop: '1px solid #6B728E',
+                      backgroundColor: '#5C8374',
+                      borderTop: '1px solid #FFF',
                       padding: '10px',
                       gap: '10px',
                     }}
@@ -102,8 +105,8 @@ export default function RecentPartners({ allPartners }) {
                     <Button
                       href={partnerItem.link}
                       style={{
-                        backgroundColor: '#404258',
-                        color: '#FFFBF5',
+                        backgroundColor: '#183D3D',
+                        color: '#FFF',
                         flex: '1',
                         textAlign: 'center',
                       }}
@@ -114,7 +117,7 @@ export default function RecentPartners({ allPartners }) {
                     <Button
                       href={partnerItem.reelLink}
                       style={{
-                        backgroundColor: '#4B5563',
+                        backgroundColor: '#93B1A6',
                         color: '#FFFBF5',
                         flex: '1',
                         textAlign: 'center',

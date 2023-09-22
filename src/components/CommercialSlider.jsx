@@ -21,12 +21,12 @@ export default function CommercialSlider() {
               fontSize="32px"
               fontWeight="bold"
               textAlign="center"
-              sx={{ padding: '0 24px 0 24px' }}
+              sx={{ padding: '0 24px 0 24px', color: '#FFF' }}
             >
               Rent this space,
               <br /> Show your Product!
             </Typography>
-            <Typography variant="span">
+            <Typography sx={{ color: '#FFF' }} variant="span">
               Send me an email, and know how.
             </Typography>
           </div>
@@ -46,12 +46,12 @@ export default function CommercialSlider() {
               fontSize="32px"
               fontWeight="bold"
               textAlign="center"
-              sx={{ padding: '0 24px 0 24px' }}
+              sx={{ padding: '0 24px 0 24px', color: '#FFF' }}
             >
               Rent this space,
               <br /> Show your Product!
             </Typography>
-            <Typography variant="span">
+            <Typography sx={{ color: '#FFF' }} variant="span">
               Send me an email, and know how.
             </Typography>
           </div>
@@ -71,12 +71,12 @@ export default function CommercialSlider() {
               fontSize="32px"
               fontWeight="bold"
               textAlign="center"
-              sx={{ padding: '0 24px 0 24px' }}
+              sx={{ padding: '0 24px 0 24px', color: '#FFF' }}
             >
               Rent this space,
               <br /> Show your Product!
             </Typography>
-            <Typography variant="span">
+            <Typography sx={{ color: '#FFF' }} variant="span">
               Send me an email, and know how.
             </Typography>
           </div>

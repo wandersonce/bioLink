@@ -30,7 +30,7 @@ export default function Header() {
         height="300px"
         borderRadius="0 0 10px 10px"
         sx={{
-          backgroundImage: 'url("./headerBg.jpg")',
+          backgroundImage: 'url("./bgSep23.jpg")',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
