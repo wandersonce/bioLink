@@ -50,8 +50,8 @@ export default function Home(props) {
         <Button
           href="https://www.paypal.com/paypalme/wandersoncastro"
           style={{
-            backgroundColor: '#F7EFE5',
-            color: '#20262E',
+            backgroundColor: '#183D3D',
+            color: '#FFF',
             width: '100%',
             fontSize: '18px',
             fontWeight: 'bold',
@@ -72,12 +72,12 @@ export default function Home(props) {
             sx={{
               marginTop: '30px',
               borderRadius: '5px',
-              backgroundColor: '#4B5563',
-              color: '#FFFBF5',
+              backgroundColor: '#183D3D',
+              color: '#FFF',
             }}
           >
             <AccordionSummary
-              expandIcon={<ExpandMore sx={{ color: '#FFFBF5' }} />}
+              expandIcon={<ExpandMore sx={{ color: '#FFF' }} />}
             >
               <Typography variant="h5">My Wishlist</Typography>
             </AccordionSummary>
@@ -97,12 +97,12 @@ export default function Home(props) {
             sx={{
               marginTop: '30px',
               borderRadius: '5px',
-              backgroundColor: '#4B5563',
-              color: '#FFFBF5',
+              backgroundColor: '#183D3D',
+              color: '#FFF',
             }}
           >
             <AccordionSummary
-              expandIcon={<ExpandMore sx={{ color: '#FFFBF5' }} />}
+              expandIcon={<ExpandMore sx={{ color: '#FFF' }} />}
             >
               <Typography variant="h5">Recent Partners</Typography>
             </AccordionSummary>
@@ -122,12 +122,12 @@ export default function Home(props) {
             sx={{
               marginTop: '30px',
               borderRadius: '5px',
-              backgroundColor: '#4B5563',
-              color: '#FFFBF5',
+              backgroundColor: '#183D3D',
+              color: '#FFF',
             }}
           >
             <AccordionSummary
-              expandIcon={<ExpandMore sx={{ color: '#FFFBF5' }} />}
+              expandIcon={<ExpandMore sx={{ color: '#FFF' }} />}
             >
               <Typography variant="h5">Setup Most Asked Parts</Typography>
             </AccordionSummary>

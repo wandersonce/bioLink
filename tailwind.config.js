@@ -3,13 +3,13 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     colors: {
-      primaryBg: '#20262E',
+      primaryBg: '#040D12',
       darkPurple: '#2D033B',
       semiDarkPurple: '#810CA8',
       mainPurple: '#C147E9',
       lightPurple: '#E5B8F4',
-      beigeLight: '#FFFBF5',
-      beigeDark: '#F7EFE5',
+      beigeLight: '#93B1A6',
+      beigeDark: '#5C8374',
       grayDark: '#404258',
       grayMedium: '#474E68',
       grayLight: '#6B728E',
