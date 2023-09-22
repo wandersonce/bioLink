@@ -23,8 +23,8 @@ export default function CommercialSlider() {
               textAlign="center"
               sx={{ padding: '0 24px 0 24px', color: '#FFF' }}
             >
-              Rent this space,
-              <br /> Show your Product!
+              Promote your Brand
+              <br /> Here!
             </Typography>
             <Typography sx={{ color: '#FFF' }} variant="span">
               Send me an email, and know how.

@@ -1,6 +1,8 @@
 import { Avatar, Box, Button, Typography } from '@mui/material';
 import SocialMediaButtons from './SocialMediaButtons';
 import { useSpring, animated } from '@react-spring/web';
+import Image from 'next/image';
+import { Envelope } from 'phosphor-react';
 
 export default function Header() {
   const stylesAvatar = useSpring({
@@ -36,6 +38,16 @@ export default function Header() {
           backgroundSize: 'cover',
         }}
       />
+      <Box className="bg-grayDark absolute top-3 left-3 rounded-lg p-3">
+        <Image
+          className=" "
+          width={100}
+          height={100}
+          src="/logo23.png"
+          alt="bam logo"
+        />
+      </Box>
+
       <Box
         display="flex"
         flexDirection="column"
@@ -49,7 +61,12 @@ export default function Header() {
             src="./profileImg.jpg"
             sx={{ width: '180px', height: '180px', border: '4px solid white' }}
           />
-          <Typography variant="h1" fontSize="30px" mt="16px">
+          <Typography
+            variant="h1"
+            fontSize="30px"
+            mt="16px"
+            className="font-bold"
+          >
             BamGames
           </Typography>
         </animated.div>
@@ -57,7 +74,12 @@ export default function Header() {
           <SocialMediaButtons />
         </animated.div>
         <animated.div style={{ ...styleEmail }}>
-          <Button variant="a" href="mailto:gamesbamce@gmail.com">
+          <Button
+            className="flex gap-2"
+            variant="a"
+            href="mailto:gamesbamce@gmail.com"
+          >
+            <Envelope size={20} />
             gamesbamce@gmail.com
           </Button>
         </animated.div>
