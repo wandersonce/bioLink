@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import CommercialSlider from '../components/CommercialSlider';
-import { Coin } from 'phosphor-react';
+import { Coin, ShoppingCart } from 'phosphor-react';
 import { ExpandMore } from '@mui/icons-material';
 import MyWhishlist from '../components/MyWhishlist';
 import RecentPartners from '../components/RecentPartners';
@@ -48,6 +48,23 @@ export default function Home(props) {
           <Header />
 
           <main className="max-w-[100vw] md:max-w-[780px] p-4 sm:max-w-[480px] ">
+            <Button
+              href="https://www.amazon.com/shop/bamtechsetup"
+              style={{
+                backgroundColor: '#dda15e',
+                color: '#FFF',
+                width: '100%',
+                border: '1px solid #fff',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                padding: '10px 20px',
+                marginTop: '30px',
+              }}
+              endIcon={<ShoppingCart size={28} />}
+            >
+              Amazon PC List
+            </Button>
+
             {/* PAYPAL DONATION*/}
             <Button
               href="https://www.paypal.com/paypalme/wandersoncastro"
