@@ -42,7 +42,7 @@ export default function RecentPartners({ allPartners }) {
                 >
                   {partnerItem.imgLink ? (
                     <CardMedia
-                      sx={{ height: '150px' }}
+                      sx={{ height: '300px' }}
                       title={partnerItem.name}
                       image={partnerItem.imgLink}
                     />
@@ -114,19 +114,21 @@ export default function RecentPartners({ allPartners }) {
                     >
                       CHECK WEBSITE
                     </Button>
-                    <Button
-                      href={partnerItem.reelLink}
-                      style={{
-                        backgroundColor: '#93B1A6',
-                        color: '#FFFBF5',
-                        flex: '1',
-                        textAlign: 'center',
-                        marginLeft: '0',
-                      }}
-                      className="w-full sm:w-1/2"
-                    >
-                      CHECK REEL
-                    </Button>
+                    {partnerItem.reelLink != '#' && (
+                      <Button
+                        href={partnerItem.reelLink}
+                        style={{
+                          backgroundColor: '#93B1A6',
+                          color: '#FFFBF5',
+                          flex: '1',
+                          textAlign: 'center',
+                          marginLeft: '0',
+                        }}
+                        className="w-full sm:w-1/2"
+                      >
+                        CHECK REEL
+                      </Button>
+                    )}
                   </CardActions>
                 </Card>
               </Box>
