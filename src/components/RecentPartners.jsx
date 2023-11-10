@@ -7,11 +7,13 @@ import {
   CardActions,
   Button,
 } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 
 export default function RecentPartners({ allPartners }) {
   const [partners, setPartners] = useState([]);
+  const matches = useMediaQuery('(max-width:640px)');
   const partnersItems = allPartners;
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function RecentPartners({ allPartners }) {
             return (
               <Box
                 key={partnerItem._id}
-                gridColumn="span 6"
+                gridColumn={matches ? 'span 12' : 'span 6'}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -42,7 +44,11 @@ export default function RecentPartners({ allPartners }) {
                 >
                   {partnerItem.imgLink ? (
                     <CardMedia
-                      sx={{ height: '300px' }}
+                      sx={{
+                        ...(matches
+                          ? { height: '200px' }
+                          : { height: '300px' }),
+                      }}
                       title={partnerItem.name}
                       image={partnerItem.imgLink}
                     />
