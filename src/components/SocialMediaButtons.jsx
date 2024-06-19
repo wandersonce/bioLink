@@ -9,6 +9,7 @@ import {
   TwitchLogo,
   YoutubeLogo,
   DiscordLogo,
+  TelegramLogo,
 } from 'phosphor-react';
 
 export default function SocialMediaButtons() {
@@ -68,6 +69,12 @@ export default function SocialMediaButtons() {
           className="text-beigeLight hover:text-lightPurple"
         >
           <DiscordLogo size={32} />
+        </IconButton>
+        <IconButton
+          href="https://t.me/+xBP26gI_jQ05NGJh"
+          className="text-beigeLight hover:text-lightPurple"
+        >
+          <TelegramLogo size={32} />
         </IconButton>
       </Box>
     </IconContext.Provider>

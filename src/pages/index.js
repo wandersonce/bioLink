@@ -8,9 +8,10 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  Box,
 } from '@mui/material';
 import CommercialSlider from '../components/CommercialSlider';
-import { Coin, ShoppingCart } from 'phosphor-react';
+import { Coin, ShoppingCart, TelegramLogo } from 'phosphor-react';
 import { ExpandMore } from '@mui/icons-material';
 import MyWhishlist from '../components/MyWhishlist';
 import RecentPartners from '../components/RecentPartners';
@@ -64,9 +65,50 @@ export default function Home(props) {
             >
               Amazon PC List
             </Button>
+            <Box
+              display="flex"
+              gap="15px"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Button
+                href="https://t.me/+xBP26gI_jQ05NGJh"
+                style={{
+                  backgroundColor: '#2FA2D8',
+                  color: '#FFF',
+                  width: '100%',
+                  border: '1px solid #fff',
+                  fontSize: '15px',
+                  fontWeight: 'bold',
+                  padding: '10px 20px',
+                  marginTop: '30px',
+                  textAlign: 'center',
+                }}
+                endIcon={<TelegramLogo size={28} />}
+              >
+                Be Part of our Telegram Group (EN)
+              </Button>
+              <Button
+                href="https://t.me/+ur8ub4KNoqs0ZjMx"
+                style={{
+                  backgroundColor: '#2FA2D8',
+                  color: '#FFF',
+                  width: '100%',
+                  border: '1px solid #fff',
+                  fontSize: '15px',
+                  fontWeight: 'bold',
+                  padding: '10px 20px',
+                  marginTop: '30px',
+                  textAlign: 'center',
+                }}
+                endIcon={<TelegramLogo size={28} />}
+              >
+                Be Part of our Telegram Group (PT-BR)
+              </Button>
+            </Box>
 
             {/* PAYPAL DONATION*/}
-            <Button
+            {/* <Button
               href="https://www.paypal.com/paypalme/wandersoncastro"
               style={{
                 backgroundColor: '#183D3D',
@@ -80,13 +122,13 @@ export default function Home(props) {
               endIcon={<Coin size={28} />}
             >
               Contribute to my Setup
-            </Button>
+            </Button> */}
 
             {/* COMMERCIAL SLIDER */}
             <CommercialSlider />
 
             {/* WISHLIST ACCORDION */}
-            <Accordion
+            {/* <Accordion
               sx={{
                 marginTop: '30px',
                 borderRadius: '5px',
@@ -113,7 +155,7 @@ export default function Home(props) {
               >
                 <MyWhishlist allPosts={wishlistItems} />
               </AccordionDetails>
-            </Accordion>
+            </Accordion> */}
 
             {/* PARTNERS ACCORDION */}
             <Accordion

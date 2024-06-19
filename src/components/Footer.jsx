@@ -15,7 +15,7 @@ export default function Footer() {
       <Button
         style={{ fontSize: '12px' }}
         variant="a"
-        href="https://wanderson-portfolio.vercel.app/"
+        href="https://wanderson-dev.vercel.app/"
       >
         Wanderson Castro
       </Button>

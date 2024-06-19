@@ -29,10 +29,10 @@ export default function Header() {
     <>
       <Box
         className="bg-darkPurple"
-        height="300px"
+        height="350px"
         borderRadius="0 0 10px 10px"
         sx={{
-          backgroundImage: 'url("./bgSep23.jpg")',
+          backgroundImage: 'url("./setupJun24.jpg")',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
