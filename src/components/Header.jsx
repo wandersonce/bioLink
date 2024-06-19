@@ -55,7 +55,15 @@ export default function Header() {
         alignItems="center"
         mt="-90px"
       >
-        <animated.div style={{ ...stylesAvatar }}>
+        <animated.div
+          style={{
+            ...stylesAvatar,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Avatar
             alt="BamGames Picture"
             src="./profileImg.jpg"
@@ -67,7 +75,7 @@ export default function Header() {
             mt="16px"
             className="font-bold"
           >
-            BamGames
+            Bam - Tech & Setup
           </Typography>
         </animated.div>
         <animated.div style={{ ...stylesIcons }}>
