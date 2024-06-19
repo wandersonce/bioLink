@@ -16,7 +16,9 @@ module.exports = {
       baseGray: '#4B5563',
       baseGrayDark: '#374151',
     },
-    extend: {},
+    extend: {
+      backgroundImage: { bodyBg: 'url("/bgPattern.png")' },
+    },
   },
   plugins: [],
 };

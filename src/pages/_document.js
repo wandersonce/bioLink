@@ -35,7 +35,7 @@ export default function Document() {
       ></script>
 
       <Head />
-      <body className="flex justify-center bg-primaryBg">
+      <body className="flex justify-center bg-bodyBg bg-cover bg-repeat-x">
         {/* GOOGLE TAG BODY */}
         <noscript>
           <iframe

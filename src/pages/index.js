@@ -45,7 +45,7 @@ export default function Home(props) {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <div className="border">
+        <div className="border bg-[#fff]/20 backdrop-blur-md shadow-md">
           <Header />
 
           <main className="max-w-[100vw] md:max-w-[780px] p-4 sm:max-w-[480px] ">
