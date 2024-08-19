@@ -11,7 +11,7 @@ import {
   Box,
 } from '@mui/material';
 import CommercialSlider from '../components/CommercialSlider';
-import { Coin, ShoppingCart, TelegramLogo } from 'phosphor-react';
+import { Question, ShoppingCart, TelegramLogo } from 'phosphor-react';
 import { ExpandMore } from '@mui/icons-material';
 import MyWhishlist from '../components/MyWhishlist';
 import RecentPartners from '../components/RecentPartners';
@@ -45,10 +45,45 @@ export default function Home(props) {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <div className="border bg-[#fff]/20 backdrop-blur-md shadow-md">
+        <div className="border relative bg-[#fff]/20 backdrop-blur-md shadow-md">
           <Header />
-
+          <div className="absolute bottom-4 right-4">
+            <Button
+              href="https://bgchatbot-96t4fzltx-wandersonces-projects.vercel.app/chatbot/8"
+              style={{
+                backgroundColor: '#68CBAA',
+                color: '#FFF',
+                width: '50px',
+                height: '65px',
+                border: '2px solid #fff',
+                borderRadius: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              aria-label="Any Question?"
+            >
+              <Question style={{ margin: '0' }} size={60} />
+            </Button>
+          </div>
           <main className="max-w-[100vw] md:max-w-[780px] p-4 sm:max-w-[480px] ">
+            <Button
+              href="https://bgchatbot-96t4fzltx-wandersonces-projects.vercel.app/chatbot/8"
+              style={{
+                backgroundColor: '#68CBAA',
+                color: '#FFF',
+                width: '100%',
+                border: '1px solid #fff',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                padding: '10px 20px',
+                marginTop: '30px',
+              }}
+              endIcon={<Question size={28} />}
+            >
+              Any Question? Ask Here!
+            </Button>
+
             <Button
               href="https://www.amazon.com/shop/bamtechsetup"
               style={{
@@ -86,7 +121,7 @@ export default function Home(props) {
                 }}
                 endIcon={<TelegramLogo size={28} />}
               >
-                Be Part of our Telegram Group (EN)
+                Telegram Group (EN)
               </Button>
               <Button
                 href="https://t.me/+ur8ub4KNoqs0ZjMx"
@@ -103,7 +138,7 @@ export default function Home(props) {
                 }}
                 endIcon={<TelegramLogo size={28} />}
               >
-                Be Part of our Telegram Group (PT-BR)
+                Telegram Group (🇧🇷)
               </Button>
             </Box>
 
